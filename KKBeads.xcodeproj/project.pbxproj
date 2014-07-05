@@ -1,0 +1,452 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		D4194A3D196798D200E07E45 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4194A3C196798D200E07E45 /* AppDelegate.swift */; };
+		D4194A3F196798D200E07E45 /* GameScene.sks in Resources */ = {isa = PBXBuildFile; fileRef = D4194A3E196798D200E07E45 /* GameScene.sks */; };
+		D4194A41196798D200E07E45 /* GameScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4194A40196798D200E07E45 /* GameScene.swift */; };
+		D4194A43196798D200E07E45 /* GameViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4194A42196798D200E07E45 /* GameViewController.swift */; };
+		D4194A46196798D200E07E45 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D4194A44196798D200E07E45 /* Main.storyboard */; };
+		D4194A48196798D200E07E45 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D4194A47196798D200E07E45 /* Images.xcassets */; };
+		D4194A54196798D200E07E45 /* KKBeadsTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4194A53196798D200E07E45 /* KKBeadsTests.swift */; };
+		D4194A5F1967990200E07E45 /* KKBeadsPosition.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4194A5E1967990200E07E45 /* KKBeadsPosition.swift */; };
+		D4194A611967992D00E07E45 /* KKConnectedBeadsRange.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4194A601967992D00E07E45 /* KKConnectedBeadsRange.swift */; };
+		D4194A631967996200E07E45 /* KKBeadsTypes.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4194A621967996200E07E45 /* KKBeadsTypes.swift */; };
+		D4194A651967A99D00E07E45 /* KKConnectedBeadsRangeFinder.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4194A641967A99D00E07E45 /* KKConnectedBeadsRangeFinder.swift */; };
+		D4194A681967B26300E07E45 /* KKBeadsTypes.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4194A621967996200E07E45 /* KKBeadsTypes.swift */; };
+		D4194A691967B26500E07E45 /* KKBeadsPosition.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4194A5E1967990200E07E45 /* KKBeadsPosition.swift */; };
+		D4194A6A1967B26700E07E45 /* KKConnectedBeadsRange.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4194A601967992D00E07E45 /* KKConnectedBeadsRange.swift */; };
+		D4194A6B1967B26900E07E45 /* KKConnectedBeadsRangeFinder.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4194A641967A99D00E07E45 /* KKConnectedBeadsRangeFinder.swift */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		D4194A4E196798D200E07E45 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = D4194A2F196798D200E07E45 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = D4194A36196798D200E07E45;
+			remoteInfo = KKBeads;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXFileReference section */
+		D4194A37196798D200E07E45 /* KKBeads.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = KKBeads.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		D4194A3B196798D200E07E45 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		D4194A3C196798D200E07E45 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
+		D4194A3E196798D200E07E45 /* GameScene.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = GameScene.sks; sourceTree = "<group>"; };
+		D4194A40196798D200E07E45 /* GameScene.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameScene.swift; sourceTree = "<group>"; };
+		D4194A42196798D200E07E45 /* GameViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameViewController.swift; sourceTree = "<group>"; };
+		D4194A45196798D200E07E45 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		D4194A47196798D200E07E45 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
+		D4194A4D196798D200E07E45 /* KKBeadsTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = KKBeadsTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		D4194A52196798D200E07E45 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		D4194A53196798D200E07E45 /* KKBeadsTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KKBeadsTests.swift; sourceTree = "<group>"; };
+		D4194A5E1967990200E07E45 /* KKBeadsPosition.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KKBeadsPosition.swift; sourceTree = "<group>"; };
+		D4194A601967992D00E07E45 /* KKConnectedBeadsRange.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KKConnectedBeadsRange.swift; sourceTree = "<group>"; };
+		D4194A621967996200E07E45 /* KKBeadsTypes.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KKBeadsTypes.swift; sourceTree = "<group>"; };
+		D4194A641967A99D00E07E45 /* KKConnectedBeadsRangeFinder.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KKConnectedBeadsRangeFinder.swift; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		D4194A34196798D200E07E45 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		D4194A4A196798D200E07E45 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		D4194A2E196798D200E07E45 = {
+			isa = PBXGroup;
+			children = (
+				D4194A5D196798EF00E07E45 /* KKBeadsModel */,
+				D4194A39196798D200E07E45 /* KKBeads */,
+				D4194A50196798D200E07E45 /* KKBeadsTests */,
+				D4194A38196798D200E07E45 /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		D4194A38196798D200E07E45 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				D4194A37196798D200E07E45 /* KKBeads.app */,
+				D4194A4D196798D200E07E45 /* KKBeadsTests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		D4194A39196798D200E07E45 /* KKBeads */ = {
+			isa = PBXGroup;
+			children = (
+				D4194A3C196798D200E07E45 /* AppDelegate.swift */,
+				D4194A3E196798D200E07E45 /* GameScene.sks */,
+				D4194A40196798D200E07E45 /* GameScene.swift */,
+				D4194A42196798D200E07E45 /* GameViewController.swift */,
+				D4194A44196798D200E07E45 /* Main.storyboard */,
+				D4194A47196798D200E07E45 /* Images.xcassets */,
+				D4194A3A196798D200E07E45 /* Supporting Files */,
+			);
+			path = KKBeads;
+			sourceTree = "<group>";
+		};
+		D4194A3A196798D200E07E45 /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				D4194A3B196798D200E07E45 /* Info.plist */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		D4194A50196798D200E07E45 /* KKBeadsTests */ = {
+			isa = PBXGroup;
+			children = (
+				D4194A53196798D200E07E45 /* KKBeadsTests.swift */,
+				D4194A51196798D200E07E45 /* Supporting Files */,
+			);
+			path = KKBeadsTests;
+			sourceTree = "<group>";
+		};
+		D4194A51196798D200E07E45 /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				D4194A52196798D200E07E45 /* Info.plist */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		D4194A5D196798EF00E07E45 /* KKBeadsModel */ = {
+			isa = PBXGroup;
+			children = (
+				D4194A621967996200E07E45 /* KKBeadsTypes.swift */,
+				D4194A5E1967990200E07E45 /* KKBeadsPosition.swift */,
+				D4194A601967992D00E07E45 /* KKConnectedBeadsRange.swift */,
+				D4194A641967A99D00E07E45 /* KKConnectedBeadsRangeFinder.swift */,
+			);
+			path = KKBeadsModel;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		D4194A36196798D200E07E45 /* KKBeads */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = D4194A57196798D200E07E45 /* Build configuration list for PBXNativeTarget "KKBeads" */;
+			buildPhases = (
+				D4194A33196798D200E07E45 /* Sources */,
+				D4194A34196798D200E07E45 /* Frameworks */,
+				D4194A35196798D200E07E45 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = KKBeads;
+			productName = KKBeads;
+			productReference = D4194A37196798D200E07E45 /* KKBeads.app */;
+			productType = "com.apple.product-type.application";
+		};
+		D4194A4C196798D200E07E45 /* KKBeadsTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = D4194A5A196798D200E07E45 /* Build configuration list for PBXNativeTarget "KKBeadsTests" */;
+			buildPhases = (
+				D4194A49196798D200E07E45 /* Sources */,
+				D4194A4A196798D200E07E45 /* Frameworks */,
+				D4194A4B196798D200E07E45 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				D4194A4F196798D200E07E45 /* PBXTargetDependency */,
+			);
+			name = KKBeadsTests;
+			productName = KKBeadsTests;
+			productReference = D4194A4D196798D200E07E45 /* KKBeadsTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		D4194A2F196798D200E07E45 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastUpgradeCheck = 0600;
+				ORGANIZATIONNAME = "Weizhong Yang";
+				TargetAttributes = {
+					D4194A36196798D200E07E45 = {
+						CreatedOnToolsVersion = 6.0;
+					};
+					D4194A4C196798D200E07E45 = {
+						CreatedOnToolsVersion = 6.0;
+						TestTargetID = D4194A36196798D200E07E45;
+					};
+				};
+			};
+			buildConfigurationList = D4194A32196798D200E07E45 /* Build configuration list for PBXProject "KKBeads" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = D4194A2E196798D200E07E45;
+			productRefGroup = D4194A38196798D200E07E45 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				D4194A36196798D200E07E45 /* KKBeads */,
+				D4194A4C196798D200E07E45 /* KKBeadsTests */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		D4194A35196798D200E07E45 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				D4194A48196798D200E07E45 /* Images.xcassets in Resources */,
+				D4194A3F196798D200E07E45 /* GameScene.sks in Resources */,
+				D4194A46196798D200E07E45 /* Main.storyboard in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		D4194A4B196798D200E07E45 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		D4194A33196798D200E07E45 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				D4194A41196798D200E07E45 /* GameScene.swift in Sources */,
+				D4194A631967996200E07E45 /* KKBeadsTypes.swift in Sources */,
+				D4194A43196798D200E07E45 /* GameViewController.swift in Sources */,
+				D4194A651967A99D00E07E45 /* KKConnectedBeadsRangeFinder.swift in Sources */,
+				D4194A611967992D00E07E45 /* KKConnectedBeadsRange.swift in Sources */,
+				D4194A5F1967990200E07E45 /* KKBeadsPosition.swift in Sources */,
+				D4194A3D196798D200E07E45 /* AppDelegate.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		D4194A49196798D200E07E45 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				D4194A691967B26500E07E45 /* KKBeadsPosition.swift in Sources */,
+				D4194A6B1967B26900E07E45 /* KKConnectedBeadsRangeFinder.swift in Sources */,
+				D4194A54196798D200E07E45 /* KKBeadsTests.swift in Sources */,
+				D4194A681967B26300E07E45 /* KKBeadsTypes.swift in Sources */,
+				D4194A6A1967B26700E07E45 /* KKConnectedBeadsRange.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		D4194A4F196798D200E07E45 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = D4194A36196798D200E07E45 /* KKBeads */;
+			targetProxy = D4194A4E196798D200E07E45 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin PBXVariantGroup section */
+		D4194A44196798D200E07E45 /* Main.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				D4194A45196798D200E07E45 /* Base */,
+			);
+			name = Main.storyboard;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		D4194A55196798D200E07E45 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				METAL_ENABLE_DEBUG_INFO = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+			};
+			name = Debug;
+		};
+		D4194A56196798D200E07E45 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = YES;
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				METAL_ENABLE_DEBUG_INFO = NO;
+				SDKROOT = iphoneos;
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		D4194A58196798D200E07E45 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				INFOPLIST_FILE = KKBeads/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Debug;
+		};
+		D4194A59196798D200E07E45 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				INFOPLIST_FILE = KKBeads/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Release;
+		};
+		D4194A5B196798D200E07E45 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(BUILT_PRODUCTS_DIR)/KKBeads.app/KKBeads";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(SDKROOT)/Developer/Library/Frameworks",
+					"$(inherited)",
+				);
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				INFOPLIST_FILE = KKBeadsTests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				METAL_ENABLE_DEBUG_INFO = YES;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_HOST = "$(BUNDLE_LOADER)";
+			};
+			name = Debug;
+		};
+		D4194A5C196798D200E07E45 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(BUILT_PRODUCTS_DIR)/KKBeads.app/KKBeads";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(SDKROOT)/Developer/Library/Frameworks",
+					"$(inherited)",
+				);
+				INFOPLIST_FILE = KKBeadsTests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				METAL_ENABLE_DEBUG_INFO = NO;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_HOST = "$(BUNDLE_LOADER)";
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		D4194A32196798D200E07E45 /* Build configuration list for PBXProject "KKBeads" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				D4194A55196798D200E07E45 /* Debug */,
+				D4194A56196798D200E07E45 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		D4194A57196798D200E07E45 /* Build configuration list for PBXNativeTarget "KKBeads" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				D4194A58196798D200E07E45 /* Debug */,
+				D4194A59196798D200E07E45 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
+		D4194A5A196798D200E07E45 /* Build configuration list for PBXNativeTarget "KKBeadsTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				D4194A5B196798D200E07E45 /* Debug */,
+				D4194A5C196798D200E07E45 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = D4194A2F196798D200E07E45 /* Project object */;
+}
