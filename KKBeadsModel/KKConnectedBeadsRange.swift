@@ -1,5 +1,7 @@
 import Foundation
 
+/*! A range of connected beads. */
+
 class KKConnectedBeadsRange {
 	var type :Int
 	var beads :KKBeadPosition[]
@@ -33,9 +35,7 @@ class KKConnectedBeadsRange {
 extension KKConnectedBeadsRange : Printable {
 	var description: String {
 	get {
-		var s = "type: \(self.type) "
-		s += "beads: \(self.beads)"
-		return s
+		return "<type: \(self.type) beads: \(self.beads)>"
 	}
 	}
 }
