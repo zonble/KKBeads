@@ -2,12 +2,12 @@ import Foundation
 
 class KKConnectedBeadsRangeFinder {
 
-	func _findHorizontalConnectedRanges(beadsMap :AnyObject[]) -> KKConnectedBeadsRange[] {
-		var connectedBeadsRanges = KKConnectedBeadsRange[]()
+	func _findHorizontalConnectedRanges(beadsMap :[AnyObject]) -> [KKConnectedBeadsRange] {
+		var connectedBeadsRanges = [KKConnectedBeadsRange]()
 		let rowCount = beadsMap.count
 		let columnCount = beadsMap[0].count
-		for y in 0..rowCount {
-			var row :Int[] = beadsMap[y] as Int[]
+		for y in 0..<rowCount {
+			var row :[Int] = beadsMap[y] as [Int]
 			var x = 0
 			while true {
 				if x >= columnCount {
@@ -37,17 +37,17 @@ class KKConnectedBeadsRangeFinder {
 		return connectedBeadsRanges
 	}
 
-	func _findVerticalConnectedRanges(beadsMap :AnyObject[]) -> KKConnectedBeadsRange[] {
-		var connectedBeadsRanges = KKConnectedBeadsRange[]()
+	func _findVerticalConnectedRanges(beadsMap :[AnyObject]) -> [KKConnectedBeadsRange] {
+		var connectedBeadsRanges = [KKConnectedBeadsRange]()
 		let rowCount = beadsMap.count
 		let columnCount = beadsMap[0].count!
-		for x in 0..columnCount {
+		for x in 0..<columnCount {
 			var y = 0
 			while true {
 				if y >= rowCount {
 					break
 				}
-				var typeOfCurrentBead :Int = (beadsMap[y] as Int[])[x] as Int
+				var typeOfCurrentBead :Int = (beadsMap[y] as [Int])[x] as Int
 				var tmp = KKConnectedBeadsRange(typeOfCurrentBead)
 				tmp.beads.append(KKBeadPosition(x: x, y: y))
 				var offset = 1
@@ -55,7 +55,7 @@ class KKConnectedBeadsRangeFinder {
 					if y + offset >= rowCount {
 						break
 					}
-					var nextType :Int = (beadsMap[y+offset] as Int[])[x] as Int
+					var nextType :Int = (beadsMap[y+offset] as [Int])[x] as Int
 					if nextType != typeOfCurrentBead {
 						break
 					}
@@ -71,16 +71,16 @@ class KKConnectedBeadsRangeFinder {
 		return connectedBeadsRanges
 	}
 
-	func _mergeFoundRanges(ranges :KKConnectedBeadsRange[]) -> KKConnectedBeadsRange[] {
-		var unhandledRanges = ranges.copy()
-		var handledRanges = KKConnectedBeadsRange[]()
+	func _mergeFoundRanges(ranges :[KKConnectedBeadsRange]) -> [KKConnectedBeadsRange] {
+		var unhandledRanges = ranges
+		var handledRanges = [KKConnectedBeadsRange]()
 		while unhandledRanges.count > 0 {
 			var currentRange = unhandledRanges[0]
 			unhandledRanges.removeAtIndex(0)
-			var indexes = Int[]()
+			var indexes = [Int]()
 			func checkIfOverlap () -> Bool {
 				var newOverlapFound = false
-				for i in 0..unhandledRanges.count {
+				for i in 0..<unhandledRanges.count {
 					if contains(indexes, i) {
 						continue
 					}
@@ -113,8 +113,8 @@ class KKConnectedBeadsRangeFinder {
 				newOverlapFound = checkIfOverlap()
 			}
 			if indexes.count > 0 {
-				indexes = sort(indexes).reverse()
-				for i in indexes {
+				let sorted = indexes.sorted {$0 > $1}
+				for i in sorted {
 					unhandledRanges.removeAtIndex(i)
 				}
 			}
@@ -123,8 +123,8 @@ class KKConnectedBeadsRangeFinder {
 		return handledRanges
 	}
 
-	func findConnectedBeads(beadsMap :AnyObject[]) -> KKConnectedBeadsRange[] {
-		var connectedBeadsRanges = KKConnectedBeadsRange[]()
+	func findConnectedBeads(beadsMap :[AnyObject]) -> [KKConnectedBeadsRange] {
+		var connectedBeadsRanges = [KKConnectedBeadsRange]()
 		if beadsMap.count == 0 {
 			return connectedBeadsRanges
 		}

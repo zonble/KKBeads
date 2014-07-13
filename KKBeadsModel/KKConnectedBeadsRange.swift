@@ -4,16 +4,16 @@ import Foundation
 
 class KKConnectedBeadsRange {
 	var type :Int
-	var beads :KKBeadPosition[]
+	var beads :[KKBeadPosition]
 
 	init (_ inType: Int) {
 		self.type = inType
-		self.beads = KKBeadPosition[]()
+		self.beads = [KKBeadPosition]()
 	}
 
-	var expandedRange :KKBeadPosition[] {
+	var expandedRange :[KKBeadPosition] {
 	get {
-		var expandedRange = KKBeadPosition[]()
+		var expandedRange = [KKBeadPosition]()
 		for bead in self.beads {
 			var additionalBeads = [
 				KKBeadPosition(x: bead.x-1, y: bead.y),
