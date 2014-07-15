@@ -99,6 +99,13 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
 	override func touchesMoved(touches: NSSet, withEvent event: UIEvent!) {
 		for touch: AnyObject in touches {
 			let location = touch.locationInNode(self)
+			if location.x < 300 || location.x > 300 + 70 * 6 {
+				return
+			}
+			if location.y < 100 || location.y > 100 + 70 * 5 {
+				return
+			}
+
 			if let bead = self.cursorBead {
 				bead.position = location
 			}
