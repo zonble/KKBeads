@@ -5,7 +5,7 @@ class KKBead : SKSpriteNode {
 	class func beadWithType(inType: Int) -> KKBead {
 		var bead = KKBead(imageNamed: "ball\(inType)")
 		bead.type = inType
-		bead.size = CGSizeMake(70, 70)
+		bead.size = CGSizeMake(50, 50)
 		return bead
 	}
 }
@@ -98,10 +98,10 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
 	override func touchesMoved(touches: NSSet, withEvent event: UIEvent!) {
 		for touch: AnyObject in touches {
 			let location = touch.locationInNode(self)
-			if location.x < 300 || location.x > 300 + 70 * 6 {
+			if location.x < 10 || location.x > 10 + 50 * 6 {
 				return
 			}
-			if location.y < 100 || location.y > 100 + 70 * 5 {
+			if location.y < 0 || location.y > 0 + 50 * 5 {
 				return
 			}
 
@@ -194,19 +194,19 @@ extension GameScene {
 	}
 
 	func pointFromBeadPosition(position :KKBeadPosition) -> CGPoint {
-		return CGPointMake(300 + Float(position.x) * 70 + 35,
-			100 +  Float(position.y) * 70 + 35)
+		return CGPointMake(10 + Float(position.x) * 50 + 25,
+			0 + Float(position.y) * 50 + 25)
 	}
 
 	func pointToBeadPosition(point :CGPoint) -> KKBeadPosition? {
-		if point.x < 300 || point.x > 300 + 70 * 6 {
+		if point.x < 10 || point.x > 0 + 50 * 6 {
 			return nil
 		}
-		if point.y < 100 || point.y > 100 + 70 * 5 {
+		if point.y < 0 || point.y > 0 + 50 * 5 {
 			return nil
 		}
-		var x = Int(point.x / 70)
-		var y = Int(point.y / 70)
+		var x = Int(point.x / 50)
+		var y = Int(point.y / 50)
 		return KKBeadPosition(x: x, y: y)
 	}
 
