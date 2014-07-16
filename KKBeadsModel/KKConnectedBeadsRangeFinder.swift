@@ -2,12 +2,12 @@ import Foundation
 
 class KKConnectedBeadsRangeFinder {
 
-	func _findHorizontalConnectedRanges(beadsMap :[AnyObject]) -> [KKConnectedBeadsRange] {
+	func _findHorizontalConnectedRanges(beadsMap :[[Int]]) -> [KKConnectedBeadsRange] {
 		var connectedBeadsRanges = [KKConnectedBeadsRange]()
 		let rowCount = beadsMap.count
 		let columnCount = beadsMap[0].count
 		for y in 0..<rowCount {
-			var row :[Int] = beadsMap[y] as [Int]
+			var row :[Int] = beadsMap[y]
 			var x = 0
 			while true {
 				if x >= columnCount {
@@ -37,17 +37,17 @@ class KKConnectedBeadsRangeFinder {
 		return connectedBeadsRanges
 	}
 
-	func _findVerticalConnectedRanges(beadsMap :[AnyObject]) -> [KKConnectedBeadsRange] {
+	func _findVerticalConnectedRanges(beadsMap :[[Int]]) -> [KKConnectedBeadsRange] {
 		var connectedBeadsRanges = [KKConnectedBeadsRange]()
 		let rowCount = beadsMap.count
-		let columnCount = beadsMap[0].count!
+		let columnCount = beadsMap[0].count
 		for x in 0..<columnCount {
 			var y = 0
 			while true {
 				if y >= rowCount {
 					break
 				}
-				var typeOfCurrentBead :Int = (beadsMap[y] as [Int])[x] as Int
+				var typeOfCurrentBead :Int = (beadsMap[y])[x]
 				var tmp = KKConnectedBeadsRange(typeOfCurrentBead)
 				tmp.beads.append(KKBeadPosition(x: x, y: y))
 				var offset = 1
@@ -55,7 +55,7 @@ class KKConnectedBeadsRangeFinder {
 					if y + offset >= rowCount {
 						break
 					}
-					var nextType :Int = (beadsMap[y+offset] as [Int])[x] as Int
+					var nextType :Int = (beadsMap[y+offset])[x]
 					if nextType != typeOfCurrentBead {
 						break
 					}
@@ -123,7 +123,7 @@ class KKConnectedBeadsRangeFinder {
 		return handledRanges
 	}
 
-	func findConnectedBeads(beadsMap :[AnyObject]) -> [KKConnectedBeadsRange] {
+	func findConnectedBeads(beadsMap :[[Int]]) -> [KKConnectedBeadsRange] {
 		var connectedBeadsRanges = [KKConnectedBeadsRange]()
 		if beadsMap.count == 0 {
 			return connectedBeadsRanges

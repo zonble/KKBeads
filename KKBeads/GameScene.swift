@@ -20,8 +20,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
 		self.makeBoard()
 	}
 
-	func _delay(call:()->Void) {
-		let delayInSeconds = 0.2
+	func _delay(call:()->Void, delayInSeconds:NSTimeInterval) {
 		let popTime = dispatch_time(DISPATCH_TIME_NOW, Int64(delayInSeconds * Double(NSEC_PER_SEC)))
 		dispatch_after(popTime, dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), {
 			call()
@@ -59,7 +58,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
 			}
 			x += 1
 		}
-		self._delay({self.doErase()})
+		self._delay({self.doErase()}, delayInSeconds: 0.2)
 	}
 
 	func doErase() {
@@ -71,18 +70,18 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
 			return
 		}
 
-		var beadsToErase = [KKBead]()
+		var i = 0
 		for range in ranges {
 			for position in range.beads {
 				var bead = self.beadAtPosition(position)!
-				beadsToErase.append(bead)
+				let wait = SKAction.waitForDuration(0.2 * Double(i))
+				let fade = SKAction.fadeOutWithDuration(0.1)
+				let group = SKAction.sequence([wait, fade])
+				bead.runAction(group, completion: {bead.removeFromParent()})
 			}
+			i++
 		}
-		for bead in beadsToErase {
-			bead.runAction(SKAction.fadeOutWithDuration(0.1), completion: {bead.removeFromParent()})
-		}
-
-		self._delay({self.doMoveBeads()})
+		self._delay({self.doMoveBeads()}, delayInSeconds: 0.2 * Double(i) + 0.1)
 	}
 
 	override func touchesEnded(touches: NSSet, withEvent event: UIEvent!)  {
