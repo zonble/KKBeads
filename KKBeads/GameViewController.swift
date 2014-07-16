@@ -6,8 +6,9 @@ class GameViewController: UIViewController {
 
 	override func viewDidLoad() {
 		super.viewDidLoad()
-		let scene = GameScene(size: self.view.bounds.size)
 		let skView = self.view as SKView
+		var size = self.view.bounds.size
+		var scene = GameScene(size: size)
 		scene.scaleMode = .AspectFill
 		skView.presentScene(scene)
 	}

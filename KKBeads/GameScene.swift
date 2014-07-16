@@ -11,97 +11,64 @@ class KKBead : SKSpriteNode {
 }
 
 class GameScene: SKScene, SKPhysicsContactDelegate {
+	var timeIsUp = false
+	var rangeFinder = KKConnectedBeadsRangeFinder()
 
 	var draggingBead :KKBead?
 	var cursorBead :KKBead?
-	var rangeFinder = KKConnectedBeadsRangeFinder()
+	var timerBar = SKShapeNode(rect: CGRectMake(0, 250, 320, 10))
+	var timerBarBackground = SKShapeNode(rect: CGRectMake(0, 250, 320, 10))
+	var comboCount :Int = 0
+	var comboText = SKLabelNode()
 
-	override func didMoveToView(view: SKView) {
-		self.makeBoard()
+	init(size: CGSize) {
+		super.init(size: size)
+		self.timerBar.fillColor = UIColor.greenColor()
+		self.timerBarBackground.fillColor = UIColor.blackColor()
+		self.addChild(self.timerBarBackground)
+		self.addChild(self.timerBar)
+		self.comboText.position = CGPointMake(180, 280)
+		self.comboText.hidden = true
+		self.comboText.fontName = "MarkerFelt-Wide"
+		self.comboText.color = UIColor.yellowColor()
+		self.addChild(self.comboText)
 	}
 
-	func _delay(call:()->Void, delayInSeconds:NSTimeInterval) {
-		let popTime = dispatch_time(DISPATCH_TIME_NOW, Int64(delayInSeconds * Double(NSEC_PER_SEC)))
-		dispatch_after(popTime, dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), {
-			call()
-		})
-	}
-
-	func doMoveBeads() {
-		var a = [[KKBead]]()
-		for x in 0...5 {
-			var col = [KKBead]()
-			for y in 0...4 {
-				var bead = self.beadAtPosition(KKBeadPosition(x: x, y: y))
-				if let b = bead {
-					col.append(b)
-				}
-			}
-			a.append(col)
-		}
-		var x = 0
-		for col in a {
-			var y = 0
-			for bead in col {
-				let acion = SKAction.moveTo(self.pointFromBeadPosition(KKBeadPosition(x: x, y: y)), duration: 0.1)
-				bead.runAction(acion)
-				y += 1
-			}
-			if y < 5 {
-				for i in 0..<(5-y) {
-					var bead = KKBead.beadWithType(random() % 5 + 1)
-					bead.position = self.pointFromBeadPosition(KKBeadPosition(x: x, y: 6 + i))
-					self.addChild(bead)
-					let acion = SKAction.moveTo(self.pointFromBeadPosition(KKBeadPosition(x: x, y: y + i)), duration: 0.1)
-					bead.runAction(acion)
-				}
-			}
-			x += 1
-		}
-		self._delay({self.doErase()}, delayInSeconds: 0.2)
-	}
-
-	func doErase() {
-		var a = self.beadsToPositionArray()
-		var ranges = self.rangeFinder.findConnectedBeads(a)
-
-		if ranges.count == 0 {
-			UIApplication.sharedApplication().endIgnoringInteractionEvents()
-			return
-		}
-
-		var i = 0
-		for range in ranges {
-			for position in range.beads {
-				var bead = self.beadAtPosition(position)!
-				let wait = SKAction.waitForDuration(0.2 * Double(i))
-				let fade = SKAction.fadeOutWithDuration(0.1)
-				let group = SKAction.sequence([wait, fade])
-				bead.runAction(group, completion: {bead.removeFromParent()})
-			}
-			i++
-		}
-		self._delay({self.doMoveBeads()}, delayInSeconds: 0.2 * Double(i) + 0.1)
-	}
-
-	override func touchesEnded(touches: NSSet, withEvent event: UIEvent!)  {
+	func _endRound() {
+		timerBar.removeAllActions()
+		timerBar.position = CGPointMake(0, 0)
+		self.timeIsUp = false
 		self.cursorBead?.removeFromParent()
 		self.cursorBead = nil
 		if self.draggingBead {
 			self.draggingBead!.alpha = 1.0
 			self.draggingBead = nil
 			UIApplication.sharedApplication().beginIgnoringInteractionEvents()
-			self.doErase()
+			self._delay({self.doErase()}, delayInSeconds: 0.2)
 		}
 	}
 
+	override func touchesCancelled(touches: NSSet!, withEvent event: UIEvent!) {
+		self._endRound()
+	}
+
+	override func touchesEnded(touches: NSSet, withEvent event: UIEvent!)  {
+		self._endRound()
+	}
+
 	override func touchesMoved(touches: NSSet, withEvent event: UIEvent!) {
+		if self.timeIsUp {
+			self.touchesCancelled(touches, withEvent: event)
+			return
+		}
 		for touch: AnyObject in touches {
 			let location = touch.locationInNode(self)
 			if location.x < 10 || location.x > 10 + 50 * 6 {
+				self.touchesCancelled(touches, withEvent: event)
 				return
 			}
 			if location.y < 0 || location.y > 0 + 50 * 5 {
+				self.touchesCancelled(touches, withEvent: event)
 				return
 			}
 
@@ -120,6 +87,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
 		}
 	}
 
+
 	override func touchesBegan(touches: NSSet, withEvent event: UIEvent) {
 		for touch: AnyObject in touches {
 			let location = touch.locationInNode(self)
@@ -130,6 +98,9 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
 				self.cursorBead = KKBead.beadWithType(self.draggingBead!.type)
 				self.cursorBead!.position = location
 				self.addChild(cursorBead)
+
+				let action = SKAction.moveToX(-320, duration: 6)
+				timerBar.runAction(action, completion: {self.timeIsUp = true})
 			}
 		}
 	}
@@ -143,7 +114,7 @@ extension GameScene {
 		for y in 0...4 {
 			for x in 0...5 {
 				srandomdev()
-				var beadType: Int = random() % 5 + 1
+				var beadType: Int = random() % 6 + 1
 				var needToPickAnotherOne = true
 				while needToPickAnotherOne {
 					var sameX = true
@@ -175,6 +146,84 @@ extension GameScene {
 				self.addChild(bead)
 			}
 		}
+	}
+
+	override func didMoveToView(view: SKView) {
+		self.makeBoard()
+	}
+
+	func _delay(call:()->Void, delayInSeconds:NSTimeInterval) {
+		let popTime = dispatch_time(DISPATCH_TIME_NOW, Int64(delayInSeconds * Double(NSEC_PER_SEC)))
+		dispatch_after(popTime, dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), {
+			call()
+			})
+	}
+
+	func doMoveBeads() {
+		var a = [[KKBead]]()
+		for x in 0...5 {
+			var col = [KKBead]()
+			for y in 0...4 {
+				var bead = self.beadAtPosition(KKBeadPosition(x: x, y: y))
+				if let b = bead {
+					col.append(b)
+				}
+			}
+			a.append(col)
+		}
+		var x = 0
+		for col in a {
+			var y = 0
+			for bead in col {
+				let acion = SKAction.moveTo(self.pointFromBeadPosition(KKBeadPosition(x: x, y: y)), duration: 0.1)
+				bead.runAction(acion)
+				y += 1
+			}
+			if y < 5 {
+				for i in 0..<(5-y) {
+					var bead = KKBead.beadWithType(random() % 6 + 1)
+					bead.position = self.pointFromBeadPosition(KKBeadPosition(x: x, y: 6 + i))
+					self.addChild(bead)
+					let acion = SKAction.moveTo(self.pointFromBeadPosition(KKBeadPosition(x: x, y: y + i)), duration: 0.1)
+					bead.runAction(acion)
+				}
+			}
+			x += 1
+		}
+		self._delay({self.doErase()}, delayInSeconds: 0.2)
+	}
+
+	func doErase() {
+		var a = self.beadsToPositionArray()
+		var ranges = self.rangeFinder.findConnectedBeads(a)
+
+		if ranges.count == 0 {
+			self.comboText.hidden = true
+			self.comboCount = 0
+			UIApplication.sharedApplication().endIgnoringInteractionEvents()
+			return
+		}
+
+		var i = 0
+		var comboActions = [SKAction]()
+		for range in ranges {
+			for position in range.beads {
+				var bead = self.beadAtPosition(position)!
+				let wait = SKAction.waitForDuration(0.2 * Double(i))
+				let fade = SKAction.fadeOutWithDuration(0.1)
+				let group = SKAction.sequence([wait, fade])
+				bead.runAction(group, completion: {bead.removeFromParent()})
+			}
+			i++
+			self.comboCount++
+		}
+
+		if self.comboCount > 1 {
+			self.comboText.hidden = false
+		}
+		self.comboText.text = "\(self.comboCount) Combo!"
+
+		self._delay({self.doMoveBeads()}, delayInSeconds: 0.2 * Double(i) + 0.1)
 	}
 }
 
