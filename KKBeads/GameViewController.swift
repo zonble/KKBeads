@@ -14,6 +14,7 @@ class GameViewController: UIViewController,
 		scene.gameDelegate = self
 		scene.scaleMode = .AspectFill
 		skView.presentScene(scene)
+		SoundEngine.sharedEngine().startBGM(.bgm2)
 	}
 
 	func gameScene(gameScene:GameScene!, didEndWithScore score:Int) {
@@ -23,6 +24,7 @@ class GameViewController: UIViewController,
 		scene.scaleMode = .AspectFill
 		var transition :SKTransition = SKTransition.crossFadeWithDuration(1.0)
 		skView.presentScene(scene, transition: transition)
+		SoundEngine.sharedEngine().startBGM(.bgm2)
 	}
 
 	func startGame() {
@@ -32,6 +34,7 @@ class GameViewController: UIViewController,
 		scene.scaleMode = .AspectFill
 		var transition :SKTransition = SKTransition.crossFadeWithDuration(1.0)
 		skView.presentScene(scene, transition: transition)
+		SoundEngine.sharedEngine().startBGM(.bgm1)
 	}
 
 	func gameIntroSceneDidStart(scene :GameIntroScene) {

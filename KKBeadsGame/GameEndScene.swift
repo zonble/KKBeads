@@ -44,8 +44,10 @@ class GameEndScene :SKScene {
 		let location = touch.locationInNode(self)
 		var node = self.nodeAtPoint(location)
 
-		if node.name == "start" {
-			self.gameDelegate?.gameEndSceneDidWantPlayAgain(self)
+		if let n = node {
+			if n.name == "start" {
+				self.gameDelegate?.gameEndSceneDidWantPlayAgain(self)
+			}
 		}
 	}
 }

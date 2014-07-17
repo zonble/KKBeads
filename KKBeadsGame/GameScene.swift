@@ -30,7 +30,7 @@ class GameScene :SKScene {
 	var comboText = SKLabelNode()
 	var messageText = SKLabelNode()
 
-	let maxBallCount = 10
+	let maxBallCount = 20
 	var ballCount :Int = 0 {
 	didSet {
 		self._updateMessage()
