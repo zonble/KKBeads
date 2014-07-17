@@ -18,11 +18,20 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
 	var cursorBead :KKBead?
 	var timerBar = SKShapeNode(rect: CGRectMake(0, 250, 320, 10))
 	var timerBarBackground = SKShapeNode(rect: CGRectMake(0, 250, 320, 10))
+	var background = SKShapeNode(rect: CGRectMake(0, 0, 320, 250))
 	var comboCount :Int = 0
 	var comboText = SKLabelNode()
 
+	var joeSprite = SKSpriteNode(imageNamed: "joe")
+
 	init(size: CGSize) {
 		super.init(size: size)
+		self.joeSprite.position = CGPointMake(160, 360)
+		self.addChild(self.joeSprite)
+
+		self.background.fillColor = UIColor.whiteColor()
+		self.addChild(self.background)
+
 		self.timerBar.fillColor = UIColor.greenColor()
 		self.timerBarBackground.fillColor = UIColor.blackColor()
 		self.addChild(self.timerBarBackground)
