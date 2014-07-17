@@ -27,6 +27,14 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
 
 	init(size: CGSize) {
 		super.init(size: size)
+		var action = SKAction.sequence([
+			SKAction.rotateByAngle(M_PI / 180 * 10, duration: 1.0),
+			SKAction.rotateByAngle(M_PI / 180 * -20, duration: 2.0),
+			SKAction.rotateByAngle(M_PI / 180 * 10, duration: 1.0)
+			])
+		var repeat = SKAction.repeatActionForever(action)
+		self.joeSprite.size = CGSizeMake(380, 380)
+		self.joeSprite.runAction(repeat)
 		self.joeSprite.position = CGPointMake(160, (self.frame.size.height - 250) / 2 + 250)
 		self.addChild(self.joeSprite)
 
@@ -198,24 +206,30 @@ extension GameScene {
 
 	func fireBullets() {
 		var i :Double = 0
+		var duration = 0.2
 		for bullet in bullets {
-//			bullet.position = CGPointMake(350, 250)
 			let x :Int = random() % Int(self.frame.size.width)
 			let y :Int = random() % Int(self.frame.size.height)
 			bullet.position = CGPointMake(CGFloat(x), CGFloat(y))
 			bullet.setScale(2.0)
 			bullet.alpha = 0.0
-			var wait = SKAction.waitForDuration(i * 0.1)
-			var fire = SKAction.moveTo(joeSprite.position, duration: 0.1)
-			var resize = SKAction.scaleTo(1.0, duration: 0.1)
-			var alpha = SKAction.fadeInWithDuration(0.1)
-			bullet.runAction(SKAction.sequence([wait, SKAction.group([resize, fire, alpha])]), completion: {bullet.removeFromParent()})
+			var wait = SKAction.waitForDuration(i * duration)
+			var fire = SKAction.moveTo(joeSprite.position, duration: duration)
+			var resize = SKAction.scaleTo(1.0, duration: duration)
+			var alpha = SKAction.fadeInWithDuration(duration)
+			bullet.runAction(SKAction.sequence([wait, SKAction.group([resize, fire, alpha])]), completion: {
+				let position = CGPointMake(160, (self.frame.size.height - 250) / 2 + 250)
+				let position2 = CGPointMake(155, (self.frame.size.height - 250) / 2 + 245)
+				let actions = SKAction.sequence([SKAction.moveTo(position2, duration: 0.1), SKAction.moveTo(position, duration: 0.1)])
+				self.joeSprite.runAction(actions)
+				bullet.removeFromParent()
+			})
 			self.addChild(bullet)
 			i += 1
 		}
 		self._delay({
 				UIApplication.sharedApplication().endIgnoringInteractionEvents()
-			}, delayInSeconds: i * 0.05)
+			}, delayInSeconds: i * duration)
 	}
 
 	func doErase() {
