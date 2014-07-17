@@ -26,7 +26,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
 
 	init(size: CGSize) {
 		super.init(size: size)
-		self.joeSprite.position = CGPointMake(160, 360)
+		self.joeSprite.position = CGPointMake(160, (self.frame.size.height - 250) / 2 + 250)
 		self.addChild(self.joeSprite)
 
 		self.background.fillColor = UIColor.whiteColor()
@@ -126,20 +126,16 @@ extension GameScene {
 				var beadType: Int = random() % 6 + 1
 				var needToPickAnotherOne = true
 				while needToPickAnotherOne {
-					var sameX = true
-					var sameY = true
+					var sameX = false
+					var sameY = false
 					if x > 1 {
 						let x1 = self.beadAtPosition(KKBeadPosition(x: x - 1, y: y))!
 						sameX = x1.type == beadType
-					} else {
-						sameX = false
 					}
 
 					if y > 1 {
 						let y1 = self.beadAtPosition(KKBeadPosition(x: x, y: y - 1))!
 						sameY = y1.type == beadType
-					} else {
-						sameY = false
 					}
 
 					if !sameX && !sameY {
