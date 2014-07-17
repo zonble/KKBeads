@@ -28,9 +28,9 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
 	init(size: CGSize) {
 		super.init(size: size)
 		var action = SKAction.sequence([
-			SKAction.rotateByAngle(M_PI / 180 * 10, duration: 1.0),
-			SKAction.rotateByAngle(M_PI / 180 * -20, duration: 2.0),
-			SKAction.rotateByAngle(M_PI / 180 * 10, duration: 1.0)
+			SKAction.rotateByAngle(CGFloat(M_PI / 180 * 10), duration: 1.0),
+			SKAction.rotateByAngle(CGFloat(M_PI / 180 * -20), duration: 2.0),
+			SKAction.rotateByAngle(CGFloat(M_PI / 180 * 10), duration: 1.0)
 			])
 		var repeat = SKAction.repeatActionForever(action)
 		self.joeSprite.size = CGSizeMake(380, 380)
