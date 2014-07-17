@@ -80,15 +80,21 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
 			self.touchesCancelled(touches, withEvent: event)
 			return
 		}
+		if self.draggingBead == nil {
+			self.touchesCancelled(touches, withEvent: event)
+			return
+		}
 		for touch: AnyObject in touches {
-			let location = touch.locationInNode(self)
-			if location.x < 10 || location.x > 10 + 50 * 6 {
-				self.touchesCancelled(touches, withEvent: event)
-				return
+			var location = touch.locationInNode(self)
+			if location.x < 35 {
+				location.x = 35
+			} else if location.x > 285 {
+				location.x = 285
 			}
-			if location.y < 0 || location.y > 0 + 50 * 5 {
-				self.touchesCancelled(touches, withEvent: event)
-				return
+			if location.y < 25 {
+				location.y = 25
+			} else if location.y > 225 {
+				location.y = 225
 			}
 
 			if let bead = self.cursorBead {
@@ -97,7 +103,8 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
 
 			if let bead = self.beadAtPoint(location) {
 				if bead !== self.draggingBead? && !bead.hasActions() {
-					let (to:CGPoint, from:CGPoint) = (bead.position, self.draggingBead!.position)
+					let to = bead.position
+					let from = self.draggingBead!.position
 					self.draggingBead!.position = to
 					let action = SKAction.moveTo(from, duration: 0.1)
 					bead.runAction(action)
