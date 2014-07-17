@@ -18,9 +18,11 @@
 		D4194A6A1967B26700E07E45 /* KKConnectedBeadsRange.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4194A601967992D00E07E45 /* KKConnectedBeadsRange.swift */; };
 		D4194A6B1967B26900E07E45 /* KKConnectedBeadsRangeFinder.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4194A641967A99D00E07E45 /* KKConnectedBeadsRangeFinder.swift */; };
 		D4BEF1A2197802D200647500 /* GameScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4BEF1A1197802D200647500 /* GameScene.swift */; };
-		D4BEF1A5197802DC00647500 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D4BEF1A4197802DC00647500 /* Images.xcassets */; };
 		D4BEF1A7197805A200647500 /* sound.caf in Resources */ = {isa = PBXBuildFile; fileRef = D4BEF1A6197805A200647500 /* sound.caf */; };
 		D4BEF1A9197805B000647500 /* SoundEngine.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4BEF1A8197805B000647500 /* SoundEngine.swift */; };
+		D4BEF1B21978166C00647500 /* GameIntoScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4BEF1B11978166C00647500 /* GameIntoScene.swift */; };
+		D4BEF1B419781B5E00647500 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D4BEF1A4197802DC00647500 /* Images.xcassets */; };
+		D4D494FA197827C500FE142A /* GameEndScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4D494F9197827C500FE142A /* GameEndScene.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -49,6 +51,8 @@
 		D4BEF1A4197802DC00647500 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		D4BEF1A6197805A200647500 /* sound.caf */ = {isa = PBXFileReference; lastKnownFileType = file; path = sound.caf; sourceTree = "<group>"; };
 		D4BEF1A8197805B000647500 /* SoundEngine.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SoundEngine.swift; sourceTree = "<group>"; };
+		D4BEF1B11978166C00647500 /* GameIntoScene.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GameIntoScene.swift; sourceTree = "<group>"; };
+		D4D494F9197827C500FE142A /* GameEndScene.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GameEndScene.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -139,6 +143,8 @@
 		D4BEF1A0197802D200647500 /* KKBeadsGame */ = {
 			isa = PBXGroup;
 			children = (
+				D4BEF1B11978166C00647500 /* GameIntoScene.swift */,
+				D4D494F9197827C500FE142A /* GameEndScene.swift */,
 				D4BEF1A1197802D200647500 /* GameScene.swift */,
 				D4BEF1A8197805B000647500 /* SoundEngine.swift */,
 			);
@@ -234,9 +240,9 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D4BEF1B419781B5E00647500 /* Images.xcassets in Resources */,
 				D4194A46196798D200E07E45 /* Main.storyboard in Resources */,
 				D4BEF1A7197805A200647500 /* sound.caf in Resources */,
-				D4BEF1A5197802DC00647500 /* Images.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -254,9 +260,11 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D4BEF1B21978166C00647500 /* GameIntoScene.swift in Sources */,
 				D4BEF1A2197802D200647500 /* GameScene.swift in Sources */,
 				D4BEF1A9197805B000647500 /* SoundEngine.swift in Sources */,
 				D4194A43196798D200E07E45 /* GameViewController.swift in Sources */,
+				D4D494FA197827C500FE142A /* GameEndScene.swift in Sources */,
 				D4194A651967A99D00E07E45 /* KKConnectedBeadsRangeFinder.swift in Sources */,
 				D4194A611967992D00E07E45 /* KKConnectedBeadsRange.swift in Sources */,
 				D4194A5F1967990200E07E45 /* KKBeadsPosition.swift in Sources */,

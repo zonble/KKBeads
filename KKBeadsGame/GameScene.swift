@@ -10,7 +10,13 @@ class KKBead : SKSpriteNode {
 	}
 }
 
-class GameScene: SKScene, SKPhysicsContactDelegate {
+protocol GameSceneDelegate {
+	func gameScene(gameScene:GameScene!, didEndWithScore score:Int)
+}
+
+class GameScene :SKScene {
+	var gameDelegate :GameSceneDelegate!
+
 	var timeIsUp = false
 	var rangeFinder = KKConnectedBeadsRangeFinder()
 
@@ -22,20 +28,40 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
 	var background = SKShapeNode(rect: CGRectMake(0, 0, 320, 250))
 	var comboCount :Int = 0
 	var comboText = SKLabelNode()
+	var messageText = SKLabelNode()
+
+	let maxBallCount = 10
+	var ballCount :Int = 0 {
+	didSet {
+		self._updateMessage()
+	}
+	}
+	var score :Int = 0 {
+	didSet {
+		self._updateMessage()
+	}
+	}
 
 	var joeSprite = SKSpriteNode(imageNamed: "joe.jpg")
 
 	init(size: CGSize) {
 		super.init(size: size)
-		var action = SKAction.sequence([
+		self.joeSprite.position = CGPointMake(160, (self.frame.size.height - 250) / 2 + 250)
+		let roateAnimation = SKAction.sequence([
 			SKAction.rotateByAngle(CGFloat(M_PI / 180 * 10), duration: 1.0),
 			SKAction.rotateByAngle(CGFloat(M_PI / 180 * -20), duration: 2.0),
 			SKAction.rotateByAngle(CGFloat(M_PI / 180 * 10), duration: 1.0)
 			])
-		var repeat = SKAction.repeatActionForever(action)
+		let zoomAnimation = SKAction.sequence([
+			SKAction.scaleTo(1.2, duration: 2.0),
+			SKAction.scaleTo(1.0, duration: 2.0)
+			])
+		let group = SKAction.group([
+			SKAction.repeatActionForever(roateAnimation),
+			SKAction.repeatActionForever(zoomAnimation)
+			])
 		self.joeSprite.size = CGSizeMake(380, 380)
-		self.joeSprite.runAction(repeat)
-		self.joeSprite.position = CGPointMake(160, (self.frame.size.height - 250) / 2 + 250)
+		self.joeSprite.runAction(group)
 		self.addChild(self.joeSprite)
 
 		self.background.fillColor = UIColor.whiteColor()
@@ -45,11 +71,21 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
 		self.timerBarBackground.fillColor = UIColor.blackColor()
 		self.addChild(self.timerBarBackground)
 		self.addChild(self.timerBar)
-		self.comboText.position = CGPointMake(180, 280)
+		self.comboText.position = CGPointMake(160, 280)
 		self.comboText.hidden = true
 		self.comboText.fontName = "MarkerFelt-Wide"
-		self.comboText.color = UIColor.yellowColor()
+		self.comboText.fontColor = UIColor.yellowColor()
 		self.addChild(self.comboText)
+
+		self.messageText.position = CGPointMake(160, self.frame.size.height - 50)
+		self.messageText.fontName = "MarkerFelt-Wide"
+		self.messageText.fontSize = 20
+		self._updateMessage()
+		self.addChild(self.messageText)
+	}
+
+	override func didMoveToView(view: SKView) {
+		self.makeBoard()
 	}
 
 	func _endRound() {
@@ -166,8 +202,8 @@ extension GameScene {
 		}
 	}
 
-	override func didMoveToView(view: SKView) {
-		self.makeBoard()
+	func _updateMessage() {
+		self.messageText.text = "Score: \(self.score) Balls: \(self.ballCount)/\(maxBallCount)"
 	}
 
 	func _delay(call:()->Void, delayInSeconds:NSTimeInterval) {
@@ -228,15 +264,20 @@ extension GameScene {
 				let position = CGPointMake(160, (self.frame.size.height - 250) / 2 + 250)
 				let position2 = CGPointMake(155, (self.frame.size.height - 250) / 2 + 245)
 				let actions = SKAction.sequence([SKAction.moveTo(position2, duration: 0.1), SKAction.moveTo(position, duration: 0.1)])
-				self.joeSprite.runAction(actions)
+				self.joeSprite.runAction(actions, completion: {
+					self.ballCount += 1
+					})
 				SoundEngine.sharedEngine().playHitSound()
 				bullet.removeFromParent()
 			})
 			self.addChild(bullet)
-			i += 1
+			i++
 		}
 		self._delay({
-				UIApplication.sharedApplication().endIgnoringInteractionEvents()
+			UIApplication.sharedApplication().endIgnoringInteractionEvents()
+			if self.ballCount >= self.maxBallCount {
+				self.gameDelegate?.gameScene(self, didEndWithScore: self.score)
+			}
 			}, delayInSeconds: i * duration)
 	}
 
@@ -268,6 +309,7 @@ extension GameScene {
 			}
 			i++
 			self.comboCount++
+			self.score += self.comboCount * range.beads.count * range.beads.count
 		}
 
 		if self.comboCount > 1 {
