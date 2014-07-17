@@ -8,10 +8,8 @@
 
 /* Begin PBXBuildFile section */
 		D4194A3D196798D200E07E45 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4194A3C196798D200E07E45 /* AppDelegate.swift */; };
-		D4194A41196798D200E07E45 /* GameScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4194A40196798D200E07E45 /* GameScene.swift */; };
 		D4194A43196798D200E07E45 /* GameViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4194A42196798D200E07E45 /* GameViewController.swift */; };
 		D4194A46196798D200E07E45 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D4194A44196798D200E07E45 /* Main.storyboard */; };
-		D4194A48196798D200E07E45 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D4194A47196798D200E07E45 /* Images.xcassets */; };
 		D4194A54196798D200E07E45 /* KKBeadsTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4194A53196798D200E07E45 /* KKBeadsTests.swift */; };
 		D4194A5F1967990200E07E45 /* KKBeadsPosition.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4194A5E1967990200E07E45 /* KKBeadsPosition.swift */; };
 		D4194A611967992D00E07E45 /* KKConnectedBeadsRange.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4194A601967992D00E07E45 /* KKConnectedBeadsRange.swift */; };
@@ -19,6 +17,10 @@
 		D4194A691967B26500E07E45 /* KKBeadsPosition.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4194A5E1967990200E07E45 /* KKBeadsPosition.swift */; };
 		D4194A6A1967B26700E07E45 /* KKConnectedBeadsRange.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4194A601967992D00E07E45 /* KKConnectedBeadsRange.swift */; };
 		D4194A6B1967B26900E07E45 /* KKConnectedBeadsRangeFinder.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4194A641967A99D00E07E45 /* KKConnectedBeadsRangeFinder.swift */; };
+		D4BEF1A2197802D200647500 /* GameScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4BEF1A1197802D200647500 /* GameScene.swift */; };
+		D4BEF1A5197802DC00647500 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D4BEF1A4197802DC00647500 /* Images.xcassets */; };
+		D4BEF1A7197805A200647500 /* sound.caf in Resources */ = {isa = PBXBuildFile; fileRef = D4BEF1A6197805A200647500 /* sound.caf */; };
+		D4BEF1A9197805B000647500 /* SoundEngine.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4BEF1A8197805B000647500 /* SoundEngine.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -35,16 +37,18 @@
 		D4194A37196798D200E07E45 /* KKBeads.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = KKBeads.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		D4194A3B196798D200E07E45 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		D4194A3C196798D200E07E45 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		D4194A40196798D200E07E45 /* GameScene.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameScene.swift; sourceTree = "<group>"; };
 		D4194A42196798D200E07E45 /* GameViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameViewController.swift; sourceTree = "<group>"; };
 		D4194A45196798D200E07E45 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
-		D4194A47196798D200E07E45 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		D4194A4D196798D200E07E45 /* KKBeadsTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = KKBeadsTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		D4194A52196798D200E07E45 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		D4194A53196798D200E07E45 /* KKBeadsTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KKBeadsTests.swift; sourceTree = "<group>"; };
 		D4194A5E1967990200E07E45 /* KKBeadsPosition.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KKBeadsPosition.swift; sourceTree = "<group>"; };
 		D4194A601967992D00E07E45 /* KKConnectedBeadsRange.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KKConnectedBeadsRange.swift; sourceTree = "<group>"; };
 		D4194A641967A99D00E07E45 /* KKConnectedBeadsRangeFinder.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KKConnectedBeadsRangeFinder.swift; sourceTree = "<group>"; };
+		D4BEF1A1197802D200647500 /* GameScene.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GameScene.swift; sourceTree = "<group>"; };
+		D4BEF1A4197802DC00647500 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
+		D4BEF1A6197805A200647500 /* sound.caf */ = {isa = PBXFileReference; lastKnownFileType = file; path = sound.caf; sourceTree = "<group>"; };
+		D4BEF1A8197805B000647500 /* SoundEngine.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SoundEngine.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -68,6 +72,8 @@
 		D4194A2E196798D200E07E45 = {
 			isa = PBXGroup;
 			children = (
+				D4BEF1A3197802DC00647500 /* KKBeadsResource */,
+				D4BEF1A0197802D200647500 /* KKBeadsGame */,
 				D4194A5D196798EF00E07E45 /* KKBeadsModel */,
 				D4194A39196798D200E07E45 /* KKBeads */,
 				D4194A50196798D200E07E45 /* KKBeadsTests */,
@@ -88,10 +94,8 @@
 			isa = PBXGroup;
 			children = (
 				D4194A3C196798D200E07E45 /* AppDelegate.swift */,
-				D4194A40196798D200E07E45 /* GameScene.swift */,
 				D4194A42196798D200E07E45 /* GameViewController.swift */,
 				D4194A44196798D200E07E45 /* Main.storyboard */,
-				D4194A47196798D200E07E45 /* Images.xcassets */,
 				D4194A3A196798D200E07E45 /* Supporting Files */,
 			);
 			path = KKBeads;
@@ -130,6 +134,24 @@
 				D4194A641967A99D00E07E45 /* KKConnectedBeadsRangeFinder.swift */,
 			);
 			path = KKBeadsModel;
+			sourceTree = "<group>";
+		};
+		D4BEF1A0197802D200647500 /* KKBeadsGame */ = {
+			isa = PBXGroup;
+			children = (
+				D4BEF1A1197802D200647500 /* GameScene.swift */,
+				D4BEF1A8197805B000647500 /* SoundEngine.swift */,
+			);
+			path = KKBeadsGame;
+			sourceTree = "<group>";
+		};
+		D4BEF1A3197802DC00647500 /* KKBeadsResource */ = {
+			isa = PBXGroup;
+			children = (
+				D4BEF1A6197805A200647500 /* sound.caf */,
+				D4BEF1A4197802DC00647500 /* Images.xcassets */,
+			);
+			path = KKBeadsResource;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -212,8 +234,9 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				D4194A48196798D200E07E45 /* Images.xcassets in Resources */,
 				D4194A46196798D200E07E45 /* Main.storyboard in Resources */,
+				D4BEF1A7197805A200647500 /* sound.caf in Resources */,
+				D4BEF1A5197802DC00647500 /* Images.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -231,7 +254,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				D4194A41196798D200E07E45 /* GameScene.swift in Sources */,
+				D4BEF1A2197802D200647500 /* GameScene.swift in Sources */,
+				D4BEF1A9197805B000647500 /* SoundEngine.swift in Sources */,
 				D4194A43196798D200E07E45 /* GameViewController.swift in Sources */,
 				D4194A651967A99D00E07E45 /* KKConnectedBeadsRangeFinder.swift in Sources */,
 				D4194A611967992D00E07E45 /* KKConnectedBeadsRange.swift in Sources */,
@@ -356,6 +380,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				INFOPLIST_FILE = KKBeads/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				TARGETED_DEVICE_FAMILY = 1;
@@ -368,6 +393,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				INFOPLIST_FILE = KKBeads/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				TARGETED_DEVICE_FAMILY = 1;

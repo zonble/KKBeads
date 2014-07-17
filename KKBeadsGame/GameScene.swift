@@ -23,7 +23,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
 	var comboCount :Int = 0
 	var comboText = SKLabelNode()
 
-	var joeSprite = SKSpriteNode(imageNamed: "joe")
+	var joeSprite = SKSpriteNode(imageNamed: "joe.jpg")
 
 	init(size: CGSize) {
 		super.init(size: size)
@@ -222,6 +222,7 @@ extension GameScene {
 				let position2 = CGPointMake(155, (self.frame.size.height - 250) / 2 + 245)
 				let actions = SKAction.sequence([SKAction.moveTo(position2, duration: 0.1), SKAction.moveTo(position, duration: 0.1)])
 				self.joeSprite.runAction(actions)
+				SoundEngine.sharedEngine().playHitSound()
 				bullet.removeFromParent()
 			})
 			self.addChild(bullet)
