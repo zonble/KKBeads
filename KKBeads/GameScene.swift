@@ -252,8 +252,9 @@ extension GameScene {
 	}
 
 	func pointFromBeadPosition(position :KKBeadPosition) -> CGPoint {
-		return CGPointMake(10 + Float(position.x) * 50 + 25,
-			0 + Float(position.y) * 50 + 25)
+		var x :CGFloat = 10 + CGFloat(position.x) * 50 + 25
+		var y :CGFloat = 0 + CGFloat(position.y) * 50 + 25
+		return CGPointMake(x, y)
 	}
 
 	func pointToBeadPosition(point :CGPoint) -> KKBeadPosition? {
