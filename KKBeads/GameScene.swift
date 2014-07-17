@@ -16,6 +16,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
 
 	var draggingBead :KKBead?
 	var cursorBead :KKBead?
+	var bullets = [KKBead]()
 	var timerBar = SKShapeNode(rect: CGRectMake(0, 250, 320, 10))
 	var timerBarBackground = SKShapeNode(rect: CGRectMake(0, 250, 320, 10))
 	var background = SKShapeNode(rect: CGRectMake(0, 0, 320, 250))
@@ -50,6 +51,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
 		self.cursorBead?.removeFromParent()
 		self.cursorBead = nil
 		if self.draggingBead {
+			bullets.removeAll(keepCapacity: false)
 			self.draggingBead!.alpha = 1.0
 			self.draggingBead = nil
 			UIApplication.sharedApplication().beginIgnoringInteractionEvents()
@@ -96,7 +98,6 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
 		}
 	}
 
-
 	override func touchesBegan(touches: NSSet, withEvent event: UIEvent) {
 		for touch: AnyObject in touches {
 			let location = touch.locationInNode(self)
@@ -112,9 +113,6 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
 				timerBar.runAction(action, completion: {self.timeIsUp = true})
 			}
 		}
-	}
-
-	override func update(currentTime: CFTimeInterval) {
 	}
 }
 
@@ -198,6 +196,28 @@ extension GameScene {
 		self._delay({self.doErase()}, delayInSeconds: 0.2)
 	}
 
+	func fireBullets() {
+		var i :Double = 0
+		for bullet in bullets {
+//			bullet.position = CGPointMake(350, 250)
+			let x :Int = random() % Int(self.frame.size.width)
+			let y :Int = random() % Int(self.frame.size.height)
+			bullet.position = CGPointMake(CGFloat(x), CGFloat(y))
+			bullet.setScale(2.0)
+			bullet.alpha = 0.0
+			var wait = SKAction.waitForDuration(i * 0.1)
+			var fire = SKAction.moveTo(joeSprite.position, duration: 0.1)
+			var resize = SKAction.scaleTo(1.0, duration: 0.1)
+			var alpha = SKAction.fadeInWithDuration(0.1)
+			bullet.runAction(SKAction.sequence([wait, SKAction.group([resize, fire, alpha])]), completion: {bullet.removeFromParent()})
+			self.addChild(bullet)
+			i += 1
+		}
+		self._delay({
+				UIApplication.sharedApplication().endIgnoringInteractionEvents()
+			}, delayInSeconds: i * 0.05)
+	}
+
 	func doErase() {
 		var a = self.beadsToPositionArray()
 		var ranges = self.rangeFinder.findConnectedBeads(a)
@@ -205,7 +225,11 @@ extension GameScene {
 		if ranges.count == 0 {
 			self.comboText.hidden = true
 			self.comboCount = 0
-			UIApplication.sharedApplication().endIgnoringInteractionEvents()
+			if bullets.count == 0 {
+				UIApplication.sharedApplication().endIgnoringInteractionEvents()
+			} else {
+				self.fireBullets()
+			}
 			return
 		}
 
@@ -218,6 +242,7 @@ extension GameScene {
 				let fade = SKAction.fadeOutWithDuration(0.1)
 				let group = SKAction.sequence([wait, fade])
 				bead.runAction(group, completion: {bead.removeFromParent()})
+				bullets.append(KKBead.beadWithType(bead.type))
 			}
 			i++
 			self.comboCount++
