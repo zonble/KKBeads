@@ -48,7 +48,7 @@ class GameIntroScene :SKScene {
 		let location = touch.locationInNode(self)
 		var node = self.nodeAtPoint(location)
 
-		if node.name == "start" {
+		if node.name? == "start" {
 			self.gameDelegate?.gameIntroSceneDidStart(self)
 		}
 	}
