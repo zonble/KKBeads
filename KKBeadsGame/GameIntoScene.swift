@@ -19,26 +19,26 @@ class GameIntroScene :SKScene {
 			self.addChild(backgroud)
 		} while (false)
 
-		var text = "從前有個人\n叫做清帆\n他過很爽！\n簡直過太爽！\n我們一起來打他吧！"
+		var text = "從前有個人，叫做清帆\n他過很爽！簡直過太爽！\n我們一起來打他吧！"
 		var textArray = text.bridgeToObjectiveC().componentsSeparatedByString("\n")
 		var point = CGPointMake(160, 200)
 		for item in textArray {
 			let line = item as String
 			var label = SKLabelNode(text: line)
 			label.position = point
-			label.fontSize = 32
+			label.fontSize = 24
 			label.fontColor = UIColor.whiteColor()
 			self.addChild(label)
-			point.y -= 40
+			point.y -= 26
 		}
 
 		self.buttonLabel.name = "start"
-		self.buttonLabel.position = CGPointMake(160, self.frame.size.height - 100)
+		self.buttonLabel.position = CGPointMake(160, 50)
 		self.buttonLabel.fontSize = 72
 		self.buttonLabel.fontName = "MarkerFelt-Wide"
 		self.buttonLabel.fontColor = UIColor.cyanColor()
 
-		let actions = SKAction.sequence([SKAction.scaleTo(1.2, duration: 0.5),SKAction.scaleTo(1.0, duration: 0.5)])
+		let actions = SKAction.sequence([SKAction.scaleTo(1.2, duration: 0.5), SKAction.scaleTo(1.0, duration: 0.5)])
 		self.buttonLabel.runAction(SKAction.repeatActionForever(actions))
 		self.addChild(self.buttonLabel)
 	}

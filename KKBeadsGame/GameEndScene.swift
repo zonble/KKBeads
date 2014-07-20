@@ -2,14 +2,18 @@ import SpriteKit
 
 protocol GameEndSceneDelegate {
 	func gameEndSceneDidWantPlayAgain(scene :GameEndScene)
+	func gameEndScene(scene :GameEndScene, didWantShareScore score:Int)
 }
 
 class GameEndScene :SKScene {
 	var gameDelegate :GameEndSceneDelegate!
 	var buttonLabel = SKLabelNode(text: "Play Again!")
+	var shareLabel = SKLabelNode(text: "Share!")
+	var score :Int = 0
 
 	init(size: CGSize, score:Int) {
 		super.init(size: size)
+		self.score = score
 
 		do {
 			var backgroud = SKSpriteNode(imageNamed: "welcome.jpg")
@@ -29,14 +33,22 @@ class GameEndScene :SKScene {
 		point.y -= 40
 
 		self.buttonLabel.name = "start"
-		self.buttonLabel.position = CGPointMake(160, self.frame.size.height - 100)
+		self.buttonLabel.position = CGPointMake(160, 140)
 		self.buttonLabel.fontSize = 48
 		self.buttonLabel.fontName = "MarkerFelt-Wide"
 		self.buttonLabel.fontColor = UIColor.cyanColor()
 
-		let actions = SKAction.sequence([SKAction.scaleTo(1.2, duration: 0.5),SKAction.scaleTo(1.0, duration: 0.5)])
-		self.buttonLabel.runAction(SKAction.repeatActionForever(actions))
+		self.buttonLabel.runAction(SKAction.repeatActionForever(SKAction.sequence([SKAction.scaleTo(1.2, duration: 0.5), SKAction.scaleTo(1.0, duration: 0.5)])))
 		self.addChild(self.buttonLabel)
+
+		self.shareLabel.name = "share"
+		self.shareLabel.position = CGPointMake(160, 80)
+		self.shareLabel.fontSize = 30
+		self.shareLabel.fontName = "MarkerFelt-Wide"
+		self.shareLabel.fontColor = UIColor.cyanColor()
+
+		self.shareLabel.runAction(SKAction.repeatActionForever(SKAction.sequence([SKAction.scaleTo(1.2, duration: 0.5),SKAction.scaleTo(1.0, duration: 0.5)])))
+		self.addChild(self.shareLabel)
 	}
 
 	override func touchesBegan(touches: NSSet!, withEvent event: UIEvent!) {
@@ -46,6 +58,10 @@ class GameEndScene :SKScene {
 
 		if node.name? == "start" {
 			self.gameDelegate?.gameEndSceneDidWantPlayAgain(self)
+		} else if node.name? == "share" {
+			self.gameDelegate?.gameEndScene(self, didWantShareScore: self.score)
 		}
 	}
+
+
 }

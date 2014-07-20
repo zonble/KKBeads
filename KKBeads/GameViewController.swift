@@ -45,6 +45,12 @@ class GameViewController: UIViewController,
 		self.startGame()
 	}
 
+	func gameEndScene(scene :GameEndScene, didWantShareScore score:Int) {
+		let text = "我剛剛拿球丟清帆，得了 \(score) 分！"
+		let controller = UIActivityViewController(activityItems: [text], applicationActivities: [])
+		self.presentViewController(controller, animated: true, completion: nil)
+	}
+
 	override func shouldAutorotate() -> Bool {
 		return true
 	}
