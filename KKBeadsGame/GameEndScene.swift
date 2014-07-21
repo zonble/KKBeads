@@ -5,11 +5,12 @@ protocol GameEndSceneDelegate {
 	func gameEndScene(scene :GameEndScene, didWantShareScore score:Int)
 }
 
+/** The scene for presenting score within a round. */
 class GameEndScene :SKScene {
-	var gameDelegate :GameEndSceneDelegate!
-	var buttonLabel = SKLabelNode(text: "Play Again!")
-	var shareLabel = SKLabelNode(text: "Share!")
-	var score :Int = 0
+	internal var gameDelegate :GameEndSceneDelegate!
+	private var buttonLabel = SKLabelNode(text: "Play Again!")
+	private var shareLabel = SKLabelNode(text: "Share!")
+	private var score :Int = 0
 
 	init(size: CGSize, score:Int) {
 		super.init(size: size)

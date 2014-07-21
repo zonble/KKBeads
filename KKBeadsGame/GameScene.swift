@@ -1,6 +1,7 @@
 import SpriteKit
 
-class KKBead : SKSpriteNode {
+private class KKBead : SKSpriteNode {
+	/** Type of the bead. 1-6. */
 	var type :Int = 0
 	class func beadWithType(inType: Int) -> KKBead {
 		var bead = KKBead(imageNamed: "ball\(inType)")
@@ -14,35 +15,37 @@ protocol GameSceneDelegate {
 	func gameScene(gameScene:GameScene!, didEndWithScore score:Int)
 }
 
+/** The main scene. */
 class GameScene :SKScene {
 	var gameDelegate :GameSceneDelegate!
 
-	var timeIsUp = false
-	var rangeFinder = KKConnectedBeadsRangeFinder()
+	private var timeIsUp = false
+	private var rangeFinder = KKConnectedBeadsRangeFinder()
 
-	var draggingBead :KKBead?
-	var cursorBead :KKBead?
-	var bullets = [KKBead]()
-	var timerBar = SKShapeNode(rect: CGRectMake(0, 250, 320, 10))
-	var timerBarBackground = SKShapeNode(rect: CGRectMake(0, 250, 320, 10))
-	var background = SKShapeNode(rect: CGRectMake(0, 0, 320, 250))
-	var comboCount :Int = 0
-	var comboText = SKLabelNode()
-	var messageText = SKLabelNode()
+	private var draggingBead :KKBead?
+	private var cursorBead :KKBead?
+	private var bullets = [KKBead]()
+	private var timerBar = SKShapeNode(rect: CGRectMake(0, 250, 320, 10))
+	private var timerBarBackground = SKShapeNode(rect: CGRectMake(0, 250, 320, 10))
+	private var background = SKShapeNode(rect: CGRectMake(0, 0, 320, 250))
+	private var comboCount :Int = 0
+	private var comboText = SKLabelNode()
+	private var messageText = SKLabelNode()
+	private var redShapeLayer = SKShapeNode(rect: CGRectMake(0, 0, 320, 420))
 
-	let maxBallCount = 20
-	var ballCount :Int = 0 {
+	private let maxBallCount = 20
+	private var ballCount :Int = 0 {
 	didSet {
 		self._updateMessage()
 	}
 	}
-	var score :Int = 0 {
+	private var score :Int = 0 {
 	didSet {
 		self._updateMessage()
 	}
 	}
 
-	var joeSprite = SKSpriteNode(imageNamed: "joe.jpg")
+	private var joeSprite = SKSpriteNode(imageNamed: "joe.jpg")
 
 	init(size: CGSize) {
 		super.init(size: size)
@@ -63,6 +66,10 @@ class GameScene :SKScene {
 		self.joeSprite.size = CGSizeMake(380, 380)
 		self.joeSprite.runAction(group)
 		self.addChild(self.joeSprite)
+
+		self.redShapeLayer.position = CGPointMake(0, 160)
+		self.redShapeLayer.fillColor = UIColor.redColor()
+		self.addChild(self.redShapeLayer)
 
 		self.background.fillColor = UIColor.whiteColor()
 		self.addChild(self.background)
@@ -88,7 +95,7 @@ class GameScene :SKScene {
 		self.makeBoard()
 	}
 
-	func _endRound() {
+	private func _endRound() {
 		timerBar.removeAllActions()
 		timerBar.position = CGPointMake(0, 0)
 		self.timeIsUp = false
@@ -167,8 +174,10 @@ class GameScene :SKScene {
 	}
 }
 
+//MARK: Animation for erasing beads and combos
+
 extension GameScene {
-	func makeBoard() {
+	private func makeBoard() {
 		for y in 0...4 {
 			for x in 0...5 {
 				srandomdev()
@@ -202,18 +211,19 @@ extension GameScene {
 		}
 	}
 
-	func _updateMessage() {
+	private func _updateMessage() {
+		self.redShapeLayer.alpha = CGFloat(self.ballCount) / CGFloat(60)
 		self.messageText.text = "Score: \(self.score) Balls: \(self.ballCount)/\(maxBallCount)"
 	}
 
-	func _delay(call:()->Void, delayInSeconds:NSTimeInterval) {
+	private func _delay(call:()->Void, delayInSeconds:NSTimeInterval) {
 		let popTime = dispatch_time(DISPATCH_TIME_NOW, Int64(delayInSeconds * Double(NSEC_PER_SEC)))
 		dispatch_after(popTime, dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), {
 			call()
 			})
 	}
 
-	func doMoveBeads() {
+	private func doMoveBeads() {
 		var a = [[KKBead]]()
 		for x in 0...5 {
 			var col = [KKBead]()
@@ -247,7 +257,7 @@ extension GameScene {
 		self._delay({self.doErase()}, delayInSeconds: 0.2)
 	}
 
-	func fireBullets() {
+	private func fireBullets() {
 		var i :Double = 0
 		var duration = 0.2
 		for bullet in bullets {
@@ -260,14 +270,14 @@ extension GameScene {
 			var fire = SKAction.moveTo(joeSprite.position, duration: duration)
 			var resize = SKAction.scaleTo(1.0, duration: duration)
 			var alpha = SKAction.fadeInWithDuration(duration)
-			bullet.runAction(SKAction.sequence([wait, SKAction.group([resize, fire, alpha])]), completion: {
+			var sound = SKAction.playSoundFileNamed("sound.caf", waitForCompletion: false)
+			bullet.runAction(SKAction.sequence([wait, SKAction.group([resize, fire, alpha]), sound]), completion: {
 				let position = CGPointMake(160, (self.frame.size.height - 250) / 2 + 250)
 				let position2 = CGPointMake(155, (self.frame.size.height - 250) / 2 + 245)
 				let actions = SKAction.sequence([SKAction.moveTo(position2, duration: 0.1), SKAction.moveTo(position, duration: 0.1)])
 				self.joeSprite.runAction(actions, completion: {
 					self.ballCount += 1
 					})
-				SoundEngine.sharedEngine().playHitSound()
 				bullet.removeFromParent()
 			})
 			self.addChild(bullet)
@@ -281,7 +291,7 @@ extension GameScene {
 			}, delayInSeconds: i * duration)
 	}
 
-	func doErase() {
+	private func doErase() {
 		var a = self.beadsToPositionArray()
 		var ranges = self.rangeFinder.findConnectedBeads(a)
 
@@ -321,9 +331,11 @@ extension GameScene {
 	}
 }
 
+//MARK: Positioning
+
 extension GameScene {
 
-	func beadsToPositionArray() -> [[Int]] {
+	private func beadsToPositionArray() -> [[Int]] {
 		var a = [[Int]]()
 		for y in 0...4 {
 			var row = [Int]()
@@ -336,13 +348,13 @@ extension GameScene {
 		return a
 	}
 
-	func pointFromBeadPosition(position :KKBeadPosition) -> CGPoint {
+	private func pointFromBeadPosition(position :KKBeadPosition) -> CGPoint {
 		var x :CGFloat = 10 + CGFloat(position.x) * 50 + 25
 		var y :CGFloat = 0 + CGFloat(position.y) * 50 + 25
 		return CGPointMake(x, y)
 	}
 
-	func pointToBeadPosition(point :CGPoint) -> KKBeadPosition? {
+	private func pointToBeadPosition(point :CGPoint) -> KKBeadPosition? {
 		if point.x < 10 || point.x > 0 + 50 * 6 {
 			return nil
 		}
@@ -354,12 +366,12 @@ extension GameScene {
 		return KKBeadPosition(x: x, y: y)
 	}
 
-	func beadAtPosition(position :KKBeadPosition) -> KKBead?  {
+	private func beadAtPosition(position :KKBeadPosition) -> KKBead?  {
 		var point = self.pointFromBeadPosition(position)
 		return self.beadAtPoint(point)
 	}
 
-	func beadAtPoint(point :CGPoint) -> KKBead? {
+	private func beadAtPoint(point :CGPoint) -> KKBead? {
 		for child in self.children {
 			if let bead = child as? KKBead {
 				let frame:CGRect = bead.frame

@@ -4,9 +4,10 @@ protocol GameIntroSceneDelegate {
 	func gameIntroSceneDidStart(scene :GameIntroScene)
 }
 
+/** The scene for introducing the game. */
 class GameIntroScene :SKScene {
-	var gameDelegate :GameIntroSceneDelegate!
-	var buttonLabel = SKLabelNode(text: "Start")
+	internal var gameDelegate :GameIntroSceneDelegate!
+	private var buttonLabel = SKLabelNode(text: "Start")
 
 	init(size: CGSize) {
 		super.init(size: size)

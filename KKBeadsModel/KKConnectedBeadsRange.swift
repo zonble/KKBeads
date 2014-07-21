@@ -3,8 +3,8 @@ import Foundation
 /*! A range of connected beads. */
 
 class KKConnectedBeadsRange {
-	var type :Int
-	var beads :[KKBeadPosition]
+	internal var type :Int
+	internal var beads :[KKBeadPosition]
 
 	init (_ inType: Int) {
 		self.type = inType

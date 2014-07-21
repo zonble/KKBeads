@@ -1,6 +1,6 @@
 import Foundation
 
-/*! Position of a bead. */
+/** Position of a bead. */
 class KKBeadPosition {
 	var x :Int = NSNotFound
 	var y :Int = NSNotFound

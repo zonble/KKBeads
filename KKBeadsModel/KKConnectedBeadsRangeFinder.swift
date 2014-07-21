@@ -2,7 +2,7 @@ import Foundation
 
 class KKConnectedBeadsRangeFinder {
 
-	func _findHorizontalConnectedRanges(beadsMap :[[Int]]) -> [KKConnectedBeadsRange] {
+	private func _findHorizontalConnectedRanges(beadsMap :[[Int]]) -> [KKConnectedBeadsRange] {
 		var connectedBeadsRanges = [KKConnectedBeadsRange]()
 		let rowCount = beadsMap.count
 		let columnCount = beadsMap[0].count
@@ -37,7 +37,7 @@ class KKConnectedBeadsRangeFinder {
 		return connectedBeadsRanges
 	}
 
-	func _findVerticalConnectedRanges(beadsMap :[[Int]]) -> [KKConnectedBeadsRange] {
+	private func _findVerticalConnectedRanges(beadsMap :[[Int]]) -> [KKConnectedBeadsRange] {
 		var connectedBeadsRanges = [KKConnectedBeadsRange]()
 		let rowCount = beadsMap.count
 		let columnCount = beadsMap[0].count
@@ -71,7 +71,7 @@ class KKConnectedBeadsRangeFinder {
 		return connectedBeadsRanges
 	}
 
-	func _mergeFoundRanges(ranges :[KKConnectedBeadsRange]) -> [KKConnectedBeadsRange] {
+	private func _mergeFoundRanges(ranges :[KKConnectedBeadsRange]) -> [KKConnectedBeadsRange] {
 		var unhandledRanges = ranges
 		var handledRanges = [KKConnectedBeadsRange]()
 		while unhandledRanges.count > 0 {
