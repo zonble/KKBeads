@@ -12,6 +12,10 @@ class GameEndScene :SKScene {
 	private var shareLabel = SKLabelNode(text: "Share!")
 	private var score :Int = 0
 
+	required init(coder aDecoder: NSCoder!) {
+		super.init(coder: aDecoder)
+	}
+
 	init(size: CGSize, score:Int) {
 		super.init(size: size)
 		self.score = score

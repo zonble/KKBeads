@@ -11,9 +11,9 @@ class KKBeadsTests: XCTestCase {
     }
     
     func testFindRange() {
-		func findRanges(m:[[Int]]) -> Int {
+		func findRanges(m :[[Int]]) -> Int {
 			var f = KKConnectedBeadsRangeFinder()
-			let r = f.findConnectedBeads(m)
+			let r = f.findConnectedBeads(m as [[Int]])
 			return r.count
 		}
 

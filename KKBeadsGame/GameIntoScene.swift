@@ -9,7 +9,11 @@ class GameIntroScene :SKScene {
 	internal var gameDelegate :GameIntroSceneDelegate!
 	private var buttonLabel = SKLabelNode(text: "Start")
 
-	init(size: CGSize) {
+	required init(coder aDecoder: NSCoder!) {
+		super.init(coder: aDecoder)
+	}
+
+	override init(size: CGSize) {
 		super.init(size: size)
 
 		do {
@@ -21,7 +25,7 @@ class GameIntroScene :SKScene {
 		} while (false)
 
 		var text = "從前有個人，叫做清帆\n他過很爽！簡直過太爽！\n我們一起來打他吧！"
-		var textArray = text.bridgeToObjectiveC().componentsSeparatedByString("\n")
+		var textArray = (text as NSString).componentsSeparatedByString("\n")
 		var point = CGPointMake(160, 200)
 		for item in textArray {
 			let line = item as String

@@ -47,7 +47,11 @@ class GameScene :SKScene {
 
 	private var joeSprite = SKSpriteNode(imageNamed: "joe.jpg")
 
-	init(size: CGSize) {
+	required init(coder aDecoder: NSCoder!) {
+		super.init(coder: aDecoder)
+	}
+
+	override init(size: CGSize) {
 		super.init(size: size)
 		self.joeSprite.position = CGPointMake(160, (self.frame.size.height - 250) / 2 + 250)
 		let roateAnimation = SKAction.sequence([
@@ -101,7 +105,7 @@ class GameScene :SKScene {
 		self.timeIsUp = false
 		self.cursorBead?.removeFromParent()
 		self.cursorBead = nil
-		if self.draggingBead {
+		if (self.draggingBead != nil) {
 			bullets.removeAll(keepCapacity: false)
 			self.draggingBead!.alpha = 1.0
 			self.draggingBead = nil
