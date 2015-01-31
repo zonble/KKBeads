@@ -9,7 +9,7 @@ class GameIntroScene :SKScene {
 	internal var gameDelegate :GameIntroSceneDelegate!
 	private var buttonLabel = SKLabelNode(text: "Start")
 
-	required init(coder aDecoder: NSCoder!) {
+	required init?(coder aDecoder: NSCoder) {
 		super.init(coder: aDecoder)
 	}
 
@@ -48,7 +48,7 @@ class GameIntroScene :SKScene {
 		self.addChild(self.buttonLabel)
 	}
 
-	override func touchesBegan(touches: NSSet!, withEvent event: UIEvent!) {
+	override func touchesBegan(touches: NSSet, withEvent event: UIEvent) {
 		let touch = touches.anyObject() as UITouch
 		let location = touch.locationInNode(self)
 		var node = self.nodeAtPoint(location)

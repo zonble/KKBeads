@@ -12,7 +12,7 @@ class GameEndScene :SKScene {
 	private var shareLabel = SKLabelNode(text: "Share!")
 	private var score :Int = 0
 
-	required init(coder aDecoder: NSCoder!) {
+	required init?(coder aDecoder: NSCoder) {
 		super.init(coder: aDecoder)
 	}
 
@@ -56,7 +56,7 @@ class GameEndScene :SKScene {
 		self.addChild(self.shareLabel)
 	}
 
-	override func touchesBegan(touches: NSSet!, withEvent event: UIEvent!) {
+	override func touchesBegan(touches: NSSet, withEvent event: UIEvent) {
 		let touch = touches.anyObject() as UITouch
 		let location = touch.locationInNode(self)
 		var node = self.nodeAtPoint(location)

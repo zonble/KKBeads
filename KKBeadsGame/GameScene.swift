@@ -15,6 +15,8 @@ protocol GameSceneDelegate {
 	func gameScene(gameScene:GameScene!, didEndWithScore score:Int)
 }
 
+let kBeadTypeCount = 6
+
 /** The main scene. */
 class GameScene :SKScene {
 	var gameDelegate :GameSceneDelegate!
@@ -47,7 +49,7 @@ class GameScene :SKScene {
 
 	private var joeSprite = SKSpriteNode(imageNamed: "joe.jpg")
 
-	required init(coder aDecoder: NSCoder!) {
+	required init?(coder aDecoder: NSCoder) {
 		super.init(coder: aDecoder)
 	}
 
@@ -118,11 +120,11 @@ class GameScene :SKScene {
 		self._endRound()
 	}
 
-	override func touchesEnded(touches: NSSet, withEvent event: UIEvent!)  {
+	override func touchesEnded(touches: NSSet, withEvent event: UIEvent)  {
 		self._endRound()
 	}
 
-	override func touchesMoved(touches: NSSet, withEvent event: UIEvent!) {
+	override func touchesMoved(touches: NSSet, withEvent event: UIEvent) {
 		if self.timeIsUp {
 			self.touchesCancelled(touches, withEvent: event)
 			return
@@ -169,7 +171,7 @@ class GameScene :SKScene {
 
 				self.cursorBead = KKBead.beadWithType(self.draggingBead!.type)
 				self.cursorBead!.position = location
-				self.addChild(cursorBead)
+				self.addChild(cursorBead!)
 
 				let action = SKAction.moveToX(-320, duration: 6)
 				timerBar.runAction(action, completion: {self.timeIsUp = true})
@@ -185,7 +187,7 @@ extension GameScene {
 		for y in 0...4 {
 			for x in 0...5 {
 				srandomdev()
-				var beadType: Int = random() % 6 + 1
+				var beadType: Int = random() % kBeadTypeCount + 1
 				var needToPickAnotherOne = true
 				while needToPickAnotherOne {
 					var sameX = false
@@ -205,7 +207,7 @@ extension GameScene {
 					}
 
 					if needToPickAnotherOne {
-						beadType = random() % 5 + 1
+						beadType = random() % kBeadTypeCount + 1
 					}
 				}
 				let bead = KKBead.beadWithType(beadType)
@@ -249,7 +251,7 @@ extension GameScene {
 			}
 			if y < 5 {
 				for i in 0..<(5-y) {
-					var bead = KKBead.beadWithType(random() % 6 + 1)
+					var bead = KKBead.beadWithType(random() % kBeadTypeCount + 1)
 					bead.position = self.pointFromBeadPosition(KKBeadPosition(x: x, y: 6 + i))
 					self.addChild(bead)
 					let acion = SKAction.moveTo(self.pointFromBeadPosition(KKBeadPosition(x: x, y: y + i)), duration: 0.1)
