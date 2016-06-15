@@ -25,8 +25,8 @@ class SoundEngine {
 		return Privates.engine
 	}
 
-	func startBGM(bgm:SoundEngineBGM) {
-		let url = NSBundle.mainBundle().URLForResource(bgm.toString(), withExtension: "mp3")
+	func startBGM(_ bgm:SoundEngineBGM) {
+		let url = Bundle.main().urlForResource(bgm.toString(), withExtension: "mp3")
 		self.player = AVAudioPlayer(contentsOfURL: url, error: nil)
 		self.player!.volume = 0.5
 		self.player!.numberOfLoops = -1

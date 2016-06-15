@@ -21,7 +21,7 @@ class KKConnectedBeadsRange {
 				KKBeadPosition(x: bead.x, y: bead.y-1),
 				KKBeadPosition(x: bead.x, y: bead.y+1)]
 			for aBead in additionalBeads {
-				if !contains(self.beads, aBead) {
+				if self.beads.contains(aBead) == false {
 					expandedRange.append(aBead)
 				}
 			}
@@ -32,10 +32,3 @@ class KKConnectedBeadsRange {
 	}
 }
 
-extension KKConnectedBeadsRange : Printable {
-	var description: String {
-	get {
-		return "<type: \(self.type) beads: \(self.beads)>"
-	}
-	}
-}

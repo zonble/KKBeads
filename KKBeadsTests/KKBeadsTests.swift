@@ -11,60 +11,60 @@ class KKBeadsTests: XCTestCase {
     }
     
     func testFindRange() {
-		func findRanges(m :[[Int]]) -> Int {
+		func findRanges(_ m :[[Int]]) -> Int {
 			var f = KKConnectedBeadsRangeFinder()
 			let r = f.findConnectedBeads(m as [[Int]])
 			return r.count
 		}
 
-		var m0 = [
+		let m0 = [
 			[1,1,1,1,1,1,1],
 			[1,1,1,1,1,1,1],
 			[1,1,1,1,1,1,1]]
 		XCTAssert(findRanges(m0) == 1)
 
-		var m1 = [
+		let m1 = [
 			[2,1,1,1,1,1,4],
 			[2,1,3,3,3,3,4],
 			[2,1,1,4,1,4,4]]
 		XCTAssert(findRanges(m1) == 4)
 
-		var m2 = [
+		let m2 = [
 			[2,1,1,1,1,1,1],
 			[2,1,1,1,1,1,1],
 			[2,1,1,1,1,1,1]
 		]
 		XCTAssert(findRanges(m2) == 2)
 
-		var m3 = [
+		let m3 = [
 			[2,1,2,1,2,1,2],
 			[1,2,1,2,1,2,1],
 			[2,1,2,1,2,1,2]
 		]
 		XCTAssert(findRanges(m3) == 0)
 
-		var m4 = [
+		let m4 = [
 			[1,1,1,2,2,2,2],
 			[3,3,3,4,4,4,4],
 			[1,1,1,2,2,2,2]
 		]
 		XCTAssert(findRanges(m4) == 6)
 
-		var m5 = [
+		let m5 = [
 			[1,1,1,1,1,1,1],
 			[1,3,3,4,4,4,1],
 			[1,1,1,1,1,1,1]
 		]
 		XCTAssert(findRanges(m5) == 2)
 
-		var m6 = [
+		let m6 = [
 			[1,1,1,2,1,1,1],
 			[1,1,1,2,1,1,1],
 			[1,1,1,2,1,1,1]
 		]
 		XCTAssert(findRanges(m6) == 3)
 
-		var m7 = [
+		let m7 = [
 			[1,2,2,2,2,2,2],
 			[1,2,2,2,2,2,2],
 			[1,1,1,1,1,1,1],
@@ -73,7 +73,7 @@ class KKBeadsTests: XCTestCase {
 		]
 		XCTAssert(findRanges(m7) == 3)
 
-		var m8 = [
+		let m8 = [
 			[1,1,1,1,1,1,2],
 			[1,2,2,2,2,2,2],
 			[1,1,1,1,1,1,1],
@@ -85,7 +85,7 @@ class KKBeadsTests: XCTestCase {
     
     func testPerformanceExample() {
         // This is an example of a performance test case.
-        self.measureBlock() {
+        self.measure() {
             // Put the code you want to measure the time of here.
         }
     }
