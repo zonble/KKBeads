@@ -224,9 +224,9 @@ extension GameScene {
 
 	private func _delay(_ call:()->Void, delayInSeconds:TimeInterval) {
 		let popTime = DispatchTime.now() + Double(Int64(delayInSeconds * Double(NSEC_PER_SEC))) / Double(NSEC_PER_SEC)
-		DispatchQueue.global(attributes: DispatchQueue.GlobalAttributes.qosDefault).after(when: popTime, block: {
+		DispatchQueue.global().after(when: popTime) { 
 			call()
-			})
+		}
 	}
 
 	private func doMoveBeads() {

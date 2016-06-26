@@ -56,14 +56,14 @@ class GameEndScene :SKScene {
 		self.addChild(self.shareLabel)
 	}
 
-	override func touchesBegan(_ touches: NSSet, with event: UIEvent) {
-		let touch = touches.anyObject() as! UITouch
-		let location = touch.location(in: self)
-		let node = self.atPoint(location)
+	override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
+		let touch = touches.first
+		let location = touch?.location(in: self)
+		let node = self.atPoint(location!)
 
-		if node.name? == "start" {
+		if node.name == "start" {
 			self.gameDelegate?.gameEndSceneDidWantPlayAgain(self)
-		} else if node.name? == "share" {
+		} else if node.name == "share" {
 			self.gameDelegate?.gameEndScene(self, didWantShareScore: self.score)
 		}
 	}

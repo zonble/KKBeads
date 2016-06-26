@@ -26,8 +26,13 @@ class SoundEngine {
 	}
 
 	func startBGM(_ bgm:SoundEngineBGM) {
-		let url = Bundle.main().urlForResource(bgm.toString(), withExtension: "mp3")
-		self.player = AVAudioPlayer(contentsOfURL: url, error: nil)
+		guard let url = Bundle.main().urlForResource(bgm.toString(), withExtension: "mp3") else {
+			return
+		}
+		guard let player = try? AVAudioPlayer(contentsOf: url) else {
+			return
+		}
+		self.player = player
 		self.player!.volume = 0.5
 		self.player!.numberOfLoops = -1
 		self.player!.play()

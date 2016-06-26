@@ -17,11 +17,3 @@ extension KKBeadPosition : Equatable {
 func == (lhs: KKBeadPosition, rhs: KKBeadPosition) -> Bool {
 	return lhs.x == rhs.x && lhs.y == rhs.y
 }
-
-extension KKBeadPosition : Printable {
-	var description :String {
-	get {
-		return "<x:\(self.x) y:\(self.y)>"
-	}
-	}
-}

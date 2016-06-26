@@ -55,10 +55,6 @@ class GameViewController: UIViewController,
 		return true
 	}
 
-	override func supportedInterfaceOrientations() -> Int {
-		return Int(UIInterfaceOrientationMask.portrait.rawValue)
-	}
-
 	override func didReceiveMemoryWarning() {
 		super.didReceiveMemoryWarning()
 	}

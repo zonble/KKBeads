@@ -15,7 +15,7 @@ class KKConnectedBeadsRange {
 	get {
 		var expandedRange = [KKBeadPosition]()
 		for bead in self.beads {
-			var additionalBeads = [
+			let additionalBeads = [
 				KKBeadPosition(x: bead.x-1, y: bead.y),
 				KKBeadPosition(x: bead.x+1, y: bead.y),
 				KKBeadPosition(x: bead.x, y: bead.y-1),

@@ -215,6 +215,8 @@
 				TargetAttributes = {
 					D4194A36196798D200E07E45 = {
 						CreatedOnToolsVersion = 6.0;
+						DevelopmentTeam = X29ZB2LBKB;
+						DevelopmentTeamName = "Weichung Yang";
 						LastSwiftMigration = 0800;
 					};
 					D4194A4C196798D200E07E45 = {

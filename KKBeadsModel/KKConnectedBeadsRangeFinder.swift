@@ -77,28 +77,28 @@ class KKConnectedBeadsRangeFinder {
 		while unhandledRanges.count > 0 {
 			var currentRange = unhandledRanges[0]
 			unhandledRanges.remove(at: 0)
-			var indexes = [Int]()
+			var indexes :[Int] = [Int]()
 			func checkIfOverlap () -> Bool {
 				var newOverlapFound = false
-				for i in 0..<unhandledRanges.count {
-					if contains(indexes, i) {
+				for i:Int in 0..<unhandledRanges.count {
+					if indexes.contains(i) {
 						continue
 					}
-					var anotherRange = unhandledRanges[i]
+					let anotherRange = unhandledRanges[i]
 					if anotherRange.type != currentRange.type {
 						continue
 					}
 					let expandedRange = currentRange.expandedRange
 					var found = false
 					for bead in anotherRange.beads {
-						if contains(expandedRange, bead) {
+						if expandedRange.contains(bead) {
 							found = true
 							break
 						}
 					}
 					if found {
 						for bead in anotherRange.beads {
-							if !contains(currentRange.beads, bead) {
+							if currentRange.beads.contains(bead) == false {
 								currentRange.beads.append(bead)
 							}
 						}
@@ -113,8 +113,8 @@ class KKConnectedBeadsRangeFinder {
 				newOverlapFound = checkIfOverlap()
 			}
 			if indexes.count > 0 {
-				let sorted = indexes.sort {$0 > $1}
-				for i in sorted {
+				let sortedIndexes = indexes.sorted {$0 > $1}
+				for i in sortedIndexes {
 					unhandledRanges.remove(at: i)
 				}
 			}

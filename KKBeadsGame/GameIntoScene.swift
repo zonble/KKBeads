@@ -50,10 +50,10 @@ class GameIntroScene :SKScene {
 
 	override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
 		let touch = touches.first
-		let location = touch.location(in: self)
-		let node = self.atPoint(location)
+		let location = touch?.location(in: self)
+		let node = self.atPoint(location!)
 
-		if node.name? == "start" {
+		if node.name == "start" {
 			self.gameDelegate?.gameIntroSceneDidStart(self)
 		}
 	}
