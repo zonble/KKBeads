@@ -17,6 +17,7 @@
 		D4194A691967B26500E07E45 /* KKBeadsPosition.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4194A5E1967990200E07E45 /* KKBeadsPosition.swift */; };
 		D4194A6A1967B26700E07E45 /* KKConnectedBeadsRange.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4194A601967992D00E07E45 /* KKConnectedBeadsRange.swift */; };
 		D4194A6B1967B26900E07E45 /* KKConnectedBeadsRangeFinder.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4194A641967A99D00E07E45 /* KKConnectedBeadsRangeFinder.swift */; };
+		D4A52A541D1FE5770036C939 /* Launch.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D4A52A531D1FE5770036C939 /* Launch.storyboard */; };
 		D4BEF1A2197802D200647500 /* GameScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4BEF1A1197802D200647500 /* GameScene.swift */; };
 		D4BEF1A7197805A200647500 /* sound.caf in Resources */ = {isa = PBXBuildFile; fileRef = D4BEF1A6197805A200647500 /* sound.caf */; };
 		D4BEF1A9197805B000647500 /* SoundEngine.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4BEF1A8197805B000647500 /* SoundEngine.swift */; };
@@ -49,6 +50,7 @@
 		D4194A5E1967990200E07E45 /* KKBeadsPosition.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KKBeadsPosition.swift; sourceTree = "<group>"; };
 		D4194A601967992D00E07E45 /* KKConnectedBeadsRange.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KKConnectedBeadsRange.swift; sourceTree = "<group>"; };
 		D4194A641967A99D00E07E45 /* KKConnectedBeadsRangeFinder.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KKConnectedBeadsRangeFinder.swift; sourceTree = "<group>"; };
+		D4A52A531D1FE5770036C939 /* Launch.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; name = Launch.storyboard; path = KKBeads/Launch.storyboard; sourceTree = "<group>"; };
 		D4BEF1A1197802D200647500 /* GameScene.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GameScene.swift; sourceTree = "<group>"; };
 		D4BEF1A4197802DC00647500 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		D4BEF1A6197805A200647500 /* sound.caf */ = {isa = PBXFileReference; lastKnownFileType = file; path = sound.caf; sourceTree = "<group>"; };
@@ -80,6 +82,7 @@
 		D4194A2E196798D200E07E45 = {
 			isa = PBXGroup;
 			children = (
+				D4A52A531D1FE5770036C939 /* Launch.storyboard */,
 				D4BEF1A3197802DC00647500 /* KKBeadsResource */,
 				D4BEF1A0197802D200647500 /* KKBeadsGame */,
 				D4194A5D196798EF00E07E45 /* KKBeadsModel */,
@@ -255,6 +258,7 @@
 				D4D4950019782EB100FE142A /* bgm2.mp3 in Resources */,
 				D4194A46196798D200E07E45 /* Main.storyboard in Resources */,
 				D4BEF1A7197805A200647500 /* sound.caf in Resources */,
+				D4A52A541D1FE5770036C939 /* Launch.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
