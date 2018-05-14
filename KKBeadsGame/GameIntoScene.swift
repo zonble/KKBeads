@@ -16,17 +16,18 @@ class GameIntroScene: SKScene {
 	override init(size: CGSize) {
 		super.init(size: size)
 
-		repeat {
+		do {
 			let backgroud = SKSpriteNode(imageNamed: "welcome.jpg")
+			backgroud.size = size
 			backgroud.position = CGPoint(x: self.frame.midX, y: self.frame.midY)
 			let actions = SKAction.sequence([SKAction.scale(to: 1.2, duration: 1.0), SKAction.scale(to: 1.0, duration: 1.0)])
 			backgroud.run(SKAction.repeatForever(actions))
 			self.addChild(backgroud)
-		} while (false)
+		}
 
 		let text = "從前有個人，叫做清帆\n他過很爽！簡直過太爽！\n我們一起來打他吧！"
 		let textArray = (text as NSString).components(separatedBy: "\n")
-		var point = CGPoint(x: 160, y: 200)
+		var point = CGPoint(x: size.width/2, y: 220)
 		for item in textArray {
 			let line = item as String
 			let label = SKLabelNode(text: line)
@@ -38,7 +39,7 @@ class GameIntroScene: SKScene {
 		}
 
 		self.buttonLabel.name = "start"
-		self.buttonLabel.position = CGPoint(x: 160, y: 50)
+		self.buttonLabel.position = CGPoint(x: size.width/2, y: 70)
 		self.buttonLabel.fontSize = 72
 		self.buttonLabel.fontName = "MarkerFelt-Wide"
 		self.buttonLabel.fontColor = UIColor.cyan
