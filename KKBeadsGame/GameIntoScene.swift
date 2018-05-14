@@ -1,12 +1,12 @@
 import SpriteKit
 
 protocol GameIntroSceneDelegate {
-	func gameIntroSceneDidStart(_ scene :GameIntroScene)
+	func gameIntroSceneDidStart(_ scene: GameIntroScene)
 }
 
 /** The scene for introducing the game. */
-class GameIntroScene :SKScene {
-	internal var gameDelegate :GameIntroSceneDelegate!
+class GameIntroScene: SKScene {
+	internal var gameDelegate: GameIntroSceneDelegate!
 	private var buttonLabel = SKLabelNode(text: "Start")
 
 	required init?(coder aDecoder: NSCoder) {
@@ -19,7 +19,7 @@ class GameIntroScene :SKScene {
 		repeat {
 			let backgroud = SKSpriteNode(imageNamed: "welcome.jpg")
 			backgroud.position = CGPoint(x: self.frame.midX, y: self.frame.midY)
-			let actions = SKAction.sequence([SKAction.scale(to: 1.2, duration: 1.0),SKAction.scale(to: 1.0, duration: 1.0)])
+			let actions = SKAction.sequence([SKAction.scale(to: 1.2, duration: 1.0), SKAction.scale(to: 1.0, duration: 1.0)])
 			backgroud.run(SKAction.repeatForever(actions))
 			self.addChild(backgroud)
 		} while (false)
@@ -32,7 +32,7 @@ class GameIntroScene :SKScene {
 			let label = SKLabelNode(text: line)
 			label.position = point
 			label.fontSize = 24
-			label.fontColor = UIColor.white()
+			label.fontColor = UIColor.white
 			self.addChild(label)
 			point.y -= 26
 		}
@@ -41,7 +41,7 @@ class GameIntroScene :SKScene {
 		self.buttonLabel.position = CGPoint(x: 160, y: 50)
 		self.buttonLabel.fontSize = 72
 		self.buttonLabel.fontName = "MarkerFelt-Wide"
-		self.buttonLabel.fontColor = UIColor.cyan()
+		self.buttonLabel.fontColor = UIColor.cyan
 
 		let actions = SKAction.sequence([SKAction.scale(to: 1.2, duration: 0.5), SKAction.scale(to: 1.0, duration: 0.5)])
 		self.buttonLabel.run(SKAction.repeatForever(actions))

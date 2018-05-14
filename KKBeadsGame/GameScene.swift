@@ -1,8 +1,9 @@
 import SpriteKit
 
-private class KKBead : SKSpriteNode {
+private class KKBead: SKSpriteNode {
 	/** Type of the bead. 1-6. */
-	var type :Int = 0
+	var type: Int = 0
+
 	class func beadWithType(_ inType: Int) -> KKBead {
 		let bead = KKBead(imageNamed: "ball\(inType)")
 		bead.type = inType
@@ -12,42 +13,42 @@ private class KKBead : SKSpriteNode {
 }
 
 protocol GameSceneDelegate {
-	func gameScene(_ gameScene:GameScene!, didEndWithScore score:Int)
+	func gameScene(_ gameScene: GameScene!, didEndWithScore score: Int)
 }
 
 let kBeadTypeCount = 6
 
 /** The main scene. */
-class GameScene :SKScene {
-	var gameDelegate :GameSceneDelegate!
+class GameScene: SKScene {
+	var gameDelegate: GameSceneDelegate!
 
-	private var timeIsUp = false
-	private var rangeFinder = KKConnectedBeadsRangeFinder()
+	fileprivate var timeIsUp = false
+	fileprivate var rangeFinder = KKConnectedBeadsRangeFinder()
 
-	private var draggingBead :KKBead?
-	private var cursorBead :KKBead?
-	private var bullets = [KKBead]()
-	private var timerBar = SKShapeNode(rect: CGRect(x: 0, y: 250, width: 320, height: 10))
-	private var timerBarBackground = SKShapeNode(rect: CGRect(x: 0, y: 250, width: 320, height: 10))
-	private var background = SKShapeNode(rect: CGRect(x: 0, y: 0, width: 320, height: 250))
-	private var comboCount :Int = 0
-	private var comboText = SKLabelNode()
-	private var messageText = SKLabelNode()
-	private var redShapeLayer = SKShapeNode(rect: CGRect(x: 0, y: 0, width: 320, height: 420))
+	fileprivate var draggingBead: KKBead?
+	fileprivate var cursorBead: KKBead?
+	fileprivate var bullets = [KKBead]()
+	fileprivate var timerBar = SKShapeNode(rect: CGRect(x: 0, y: 250, width: 320, height: 10))
+	fileprivate var timerBarBackground = SKShapeNode(rect: CGRect(x: 0, y: 250, width: 320, height: 10))
+	fileprivate var background = SKShapeNode(rect: CGRect(x: 0, y: 0, width: 320, height: 250))
+	fileprivate var comboCount: Int = 0
+	fileprivate var comboText = SKLabelNode()
+	fileprivate var messageText = SKLabelNode()
+	fileprivate var redShapeLayer = SKShapeNode(rect: CGRect(x: 0, y: 0, width: 320, height: 420))
 
-	private let maxBallCount = 20
-	private var ballCount :Int = 0 {
-	didSet {
-		self._updateMessage()
+	fileprivate let maxBallCount = 20
+	fileprivate var ballCount: Int = 0 {
+		didSet {
+			self._updateMessage()
+		}
 	}
-	}
-	private var score :Int = 0 {
-	didSet {
-		self._updateMessage()
-	}
+	fileprivate var score: Int = 0 {
+		didSet {
+			self._updateMessage()
+		}
 	}
 
-	private var joeSprite = SKSpriteNode(imageNamed: "joe.jpg")
+	fileprivate var joeSprite = SKSpriteNode(imageNamed: "joe.jpg")
 
 	required init?(coder aDecoder: NSCoder) {
 		super.init(coder: aDecoder)
@@ -60,34 +61,34 @@ class GameScene :SKScene {
 			SKAction.rotate(byAngle: CGFloat(M_PI / 180 * 10), duration: 1.0),
 			SKAction.rotate(byAngle: CGFloat(M_PI / 180 * -20), duration: 2.0),
 			SKAction.rotate(byAngle: CGFloat(M_PI / 180 * 10), duration: 1.0)
-			])
+		])
 		let zoomAnimation = SKAction.sequence([
 			SKAction.scale(to: 1.2, duration: 2.0),
 			SKAction.scale(to: 1.0, duration: 2.0)
-			])
+		])
 		let group = SKAction.group([
 			SKAction.repeatForever(roateAnimation),
 			SKAction.repeatForever(zoomAnimation)
-			])
+		])
 		self.joeSprite.size = CGSize(width: 380, height: 380)
 		self.joeSprite.run(group)
 		self.addChild(self.joeSprite)
 
 		self.redShapeLayer.position = CGPoint(x: 0, y: 160)
-		self.redShapeLayer.fillColor = UIColor.red()
+		self.redShapeLayer.fillColor = UIColor.red
 		self.addChild(self.redShapeLayer)
 
-		self.background.fillColor = UIColor.white()
+		self.background.fillColor = UIColor.white
 		self.addChild(self.background)
 
-		self.timerBar.fillColor = UIColor.green()
-		self.timerBarBackground.fillColor = UIColor.black()
+		self.timerBar.fillColor = UIColor.green
+		self.timerBarBackground.fillColor = UIColor.black
 		self.addChild(self.timerBarBackground)
 		self.addChild(self.timerBar)
 		self.comboText.position = CGPoint(x: 160, y: 280)
 		self.comboText.isHidden = true
 		self.comboText.fontName = "MarkerFelt-Wide"
-		self.comboText.fontColor = UIColor.yellow()
+		self.comboText.fontColor = UIColor.yellow
 		self.addChild(self.comboText)
 
 		self.messageText.position = CGPoint(x: 160, y: self.frame.size.height - 50)
@@ -111,8 +112,8 @@ class GameScene :SKScene {
 			bullets.removeAll(keepingCapacity: false)
 			self.draggingBead!.alpha = 1.0
 			self.draggingBead = nil
-			UIApplication.shared().beginIgnoringInteractionEvents()
-			self._delay({self.doErase()}, delayInSeconds: 0.2)
+			UIApplication.shared.beginIgnoringInteractionEvents()
+			self._delay({ self.doErase() }, delayInSeconds: 0.2)
 		}
 	}
 
@@ -120,7 +121,7 @@ class GameScene :SKScene {
 		self._endRound()
 	}
 
-	override func touchesEnded(_ touches: Set<UITouch>, with event: UIEvent?)  {
+	override func touchesEnded(_ touches: Set<UITouch>, with event: UIEvent?) {
 		self._endRound()
 	}
 
@@ -174,7 +175,7 @@ class GameScene :SKScene {
 				self.addChild(cursorBead!)
 
 				let action = SKAction.moveTo(x: -320, duration: 6)
-				timerBar.run(action, completion: {self.timeIsUp = true})
+				timerBar.run(action, completion: { self.timeIsUp = true })
 			}
 		}
 	}
@@ -183,7 +184,7 @@ class GameScene :SKScene {
 //MARK: Animation for erasing beads and combos
 
 extension GameScene {
-	private func makeBoard() {
+	fileprivate func makeBoard() {
 		for y in 0...4 {
 			for x in 0...5 {
 				srandomdev()
@@ -217,14 +218,14 @@ extension GameScene {
 		}
 	}
 
-	private func _updateMessage() {
+	fileprivate func _updateMessage() {
 		self.redShapeLayer.alpha = CGFloat(self.ballCount) / CGFloat(60)
 		self.messageText.text = "Score: \(self.score) Balls: \(self.ballCount)/\(maxBallCount)"
 	}
 
-	private func _delay(_ call:()->Void, delayInSeconds:TimeInterval) {
+	fileprivate func _delay(_ call: @escaping () -> (), delayInSeconds: TimeInterval) {
 		let popTime = DispatchTime.now() + Double(Int64(delayInSeconds * Double(NSEC_PER_SEC))) / Double(NSEC_PER_SEC)
-		DispatchQueue.global().after(when: popTime) { 
+		DispatchQueue.main.asyncAfter(deadline: popTime) {
 			call()
 		}
 	}
@@ -250,7 +251,7 @@ extension GameScene {
 				y += 1
 			}
 			if y < 5 {
-				for i in 0..<(5-y) {
+				for i in 0..<(5 - y) {
 					let bead = KKBead.beadWithType(Int(arc4random()) % kBeadTypeCount + 1)
 					bead.position = self.pointFromBeadPosition(KKBeadPosition(x: x, y: 6 + i))
 					self.addChild(bead)
@@ -260,15 +261,15 @@ extension GameScene {
 			}
 			x += 1
 		}
-		self._delay({self.doErase()}, delayInSeconds: 0.2)
+		self._delay({ self.doErase() }, delayInSeconds: 0.2)
 	}
 
 	private func fireBullets() {
-		var i :Double = 0
+		var i: Double = 0
 		let duration = 0.2
 		for bullet in bullets {
-			let x :Int = Int(arc4random()) % Int(self.frame.size.width)
-			let y :Int = Int(arc4random()) % Int(self.frame.size.height)
+			let x: Int = Int(arc4random()) % Int(self.frame.size.width)
+			let y: Int = Int(arc4random()) % Int(self.frame.size.height)
 			bullet.position = CGPoint(x: CGFloat(x), y: CGFloat(y))
 			bullet.setScale(2.0)
 			bullet.alpha = 0.0
@@ -283,29 +284,29 @@ extension GameScene {
 				let actions = SKAction.sequence([SKAction.move(to: position2, duration: 0.1), SKAction.move(to: position, duration: 0.1)])
 				self.joeSprite.run(actions, completion: {
 					self.ballCount += 1
-					})
+				})
 				bullet.removeFromParent()
 			})
 			self.addChild(bullet)
 			i += 1
 		}
 		self._delay({
-			UIApplication.shared().endIgnoringInteractionEvents()
+			UIApplication.shared.endIgnoringInteractionEvents()
 			if self.ballCount >= self.maxBallCount {
 				self.gameDelegate?.gameScene(self, didEndWithScore: self.score)
 			}
-			}, delayInSeconds: i * duration)
+		}, delayInSeconds: i * duration)
 	}
 
-	private func doErase() {
-		var a = self.beadsToPositionArray()
-		var ranges = self.rangeFinder.findConnectedBeads(a)
+	fileprivate func doErase() {
+		let a = self.beadsToPositionArray()
+		let ranges = self.rangeFinder.findConnectedBeads(a)
 
 		if ranges.count == 0 {
 			self.comboText.isHidden = true
 			self.comboCount = 0
 			if bullets.count == 0 {
-				UIApplication.shared().endIgnoringInteractionEvents()
+				UIApplication.shared.endIgnoringInteractionEvents()
 			} else {
 				self.fireBullets()
 			}
@@ -313,14 +314,14 @@ extension GameScene {
 		}
 
 		var i = 0
-		var comboActions = [SKAction]()
+		_ = [SKAction]()
 		for range in ranges {
 			for position in range.beads {
-				var bead = self.beadAtPosition(position)!
+				let bead = self.beadAtPosition(position)!
 				let wait = SKAction.wait(forDuration: 0.2 * Double(i))
 				let fade = SKAction.fadeOut(withDuration: 0.1)
 				let group = SKAction.sequence([wait, fade])
-				bead.run(group, completion: {bead.removeFromParent()})
+				bead.run(group, completion: { bead.removeFromParent() })
 				bullets.append(KKBead.beadWithType(bead.type))
 			}
 			i += 1
@@ -333,7 +334,7 @@ extension GameScene {
 		}
 		self.comboText.text = "\(self.comboCount) Combo!"
 
-		self._delay({self.doMoveBeads()}, delayInSeconds: 0.2 * Double(i) + 0.1)
+		self._delay({ self.doMoveBeads() }, delayInSeconds: 0.2 * Double(i) + 0.1)
 	}
 }
 
@@ -341,12 +342,12 @@ extension GameScene {
 
 extension GameScene {
 
-	private func beadsToPositionArray() -> [[Int]] {
+	fileprivate func beadsToPositionArray() -> [[Int]] {
 		var a = [[Int]]()
 		for y in 0...4 {
 			var row = [Int]()
 			for x in 0...5 {
-				let bead :KKBead = self.beadAtPosition(KKBeadPosition(x: x, y: y))!
+				let bead: KKBead = self.beadAtPosition(KKBeadPosition(x: x, y: y))!
 				row.append(bead.type)
 			}
 			a.append(row)
@@ -354,13 +355,13 @@ extension GameScene {
 		return a
 	}
 
-	private func pointFromBeadPosition(_ position :KKBeadPosition) -> CGPoint {
-		let x :CGFloat = 10 + CGFloat(position.x) * 50 + 25
-		let y :CGFloat = 0 + CGFloat(position.y) * 50 + 25
+	fileprivate func pointFromBeadPosition(_ position: KKBeadPosition) -> CGPoint {
+		let x: CGFloat = 10 + CGFloat(position.x) * 50 + 25
+		let y: CGFloat = 0 + CGFloat(position.y) * 50 + 25
 		return CGPoint(x: x, y: y)
 	}
 
-	private func pointToBeadPosition(_ point :CGPoint) -> KKBeadPosition? {
+	fileprivate func pointToBeadPosition(_ point: CGPoint) -> KKBeadPosition? {
 		if point.x < 10 || point.x > 0 + 50 * 6 {
 			return nil
 		}
@@ -372,15 +373,15 @@ extension GameScene {
 		return KKBeadPosition(x: x, y: y)
 	}
 
-	private func beadAtPosition(_ position :KKBeadPosition) -> KKBead?  {
+	fileprivate func beadAtPosition(_ position: KKBeadPosition) -> KKBead? {
 		let point = self.pointFromBeadPosition(position)
 		return self.beadAtPoint(point)
 	}
 
-	private func beadAtPoint(_ point :CGPoint) -> KKBead? {
+	fileprivate func beadAtPoint(_ point: CGPoint) -> KKBead? {
 		for child in self.children {
 			if let bead = child as? KKBead {
-				let frame:CGRect = bead.frame
+				let frame: CGRect = bead.frame
 				if frame.contains(point) {
 					return bead
 				}

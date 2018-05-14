@@ -1,29 +1,29 @@
 import SpriteKit
 
 protocol GameEndSceneDelegate {
-	func gameEndSceneDidWantPlayAgain(_ scene :GameEndScene)
-	func gameEndScene(_ scene :GameEndScene, didWantShareScore score:Int)
+	func gameEndSceneDidWantPlayAgain(_ scene: GameEndScene)
+	func gameEndScene(_ scene: GameEndScene, didWantShareScore score: Int)
 }
 
 /** The scene for presenting score within a round. */
-class GameEndScene :SKScene {
-	internal var gameDelegate :GameEndSceneDelegate!
+class GameEndScene: SKScene {
+	internal var gameDelegate: GameEndSceneDelegate!
 	private var buttonLabel = SKLabelNode(text: "Play Again!")
 	private var shareLabel = SKLabelNode(text: "Share!")
-	private var score :Int = 0
+	private var score: Int = 0
 
 	required init?(coder aDecoder: NSCoder) {
 		super.init(coder: aDecoder)
 	}
 
-	init(size: CGSize, score:Int) {
+	init(size: CGSize, score: Int) {
 		super.init(size: size)
 		self.score = score
 
 		repeat {
 			let backgroud = SKSpriteNode(imageNamed: "welcome.jpg")
 			backgroud.position = CGPoint(x: self.frame.midX, y: self.frame.midY)
-			let actions = SKAction.sequence([SKAction.scale(to: 1.2, duration: 1.0),SKAction.scale(to: 1.0, duration: 1.0)])
+			let actions = SKAction.sequence([SKAction.scale(to: 1.2, duration: 1.0), SKAction.scale(to: 1.0, duration: 1.0)])
 			backgroud.run(SKAction.repeatForever(actions))
 			self.addChild(backgroud)
 		} while (false)
@@ -33,7 +33,7 @@ class GameEndScene :SKScene {
 		label.position = point
 		label.fontName = "MarkerFelt-Wide"
 		label.fontSize = 32
-		label.fontColor = UIColor.white()
+		label.fontColor = UIColor.white
 		self.addChild(label)
 		point.y -= 40
 
@@ -41,7 +41,7 @@ class GameEndScene :SKScene {
 		self.buttonLabel.position = CGPoint(x: 160, y: 140)
 		self.buttonLabel.fontSize = 48
 		self.buttonLabel.fontName = "MarkerFelt-Wide"
-		self.buttonLabel.fontColor = UIColor.cyan()
+		self.buttonLabel.fontColor = UIColor.cyan
 
 		self.buttonLabel.run(SKAction.repeatForever(SKAction.sequence([SKAction.scale(to: 1.2, duration: 0.5), SKAction.scale(to: 1.0, duration: 0.5)])))
 		self.addChild(self.buttonLabel)
@@ -50,9 +50,9 @@ class GameEndScene :SKScene {
 		self.shareLabel.position = CGPoint(x: 160, y: 80)
 		self.shareLabel.fontSize = 30
 		self.shareLabel.fontName = "MarkerFelt-Wide"
-		self.shareLabel.fontColor = UIColor.cyan()
+		self.shareLabel.fontColor = UIColor.cyan
 
-		self.shareLabel.run(SKAction.repeatForever(SKAction.sequence([SKAction.scale(to: 1.2, duration: 0.5),SKAction.scale(to: 1.0, duration: 0.5)])))
+		self.shareLabel.run(SKAction.repeatForever(SKAction.sequence([SKAction.scale(to: 1.2, duration: 0.5), SKAction.scale(to: 1.0, duration: 0.5)])))
 		self.addChild(self.shareLabel)
 	}
 
