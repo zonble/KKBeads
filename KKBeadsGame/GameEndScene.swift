@@ -20,15 +20,16 @@ class GameEndScene: SKScene {
 		super.init(size: size)
 		self.score = score
 
-		repeat {
+		do {
 			let backgroud = SKSpriteNode(imageNamed: "welcome.jpg")
+			backgroud.size = size
 			backgroud.position = CGPoint(x: self.frame.midX, y: self.frame.midY)
 			let actions = SKAction.sequence([SKAction.scale(to: 1.2, duration: 1.0), SKAction.scale(to: 1.0, duration: 1.0)])
 			backgroud.run(SKAction.repeatForever(actions))
 			self.addChild(backgroud)
-		} while (false)
+		}
 
-		var point = CGPoint(x: 160, y: 200)
+		var point = CGPoint(x: size.width / 2, y: 200)
 		let label = SKLabelNode(text: "Score: \(score)")
 		label.position = point
 		label.fontName = "MarkerFelt-Wide"
@@ -38,7 +39,7 @@ class GameEndScene: SKScene {
 		point.y -= 40
 
 		self.buttonLabel.name = "start"
-		self.buttonLabel.position = CGPoint(x: 160, y: 140)
+		self.buttonLabel.position = CGPoint(x: size.width / 2, y: 140)
 		self.buttonLabel.fontSize = 48
 		self.buttonLabel.fontName = "MarkerFelt-Wide"
 		self.buttonLabel.fontColor = UIColor.cyan
@@ -47,7 +48,7 @@ class GameEndScene: SKScene {
 		self.addChild(self.buttonLabel)
 
 		self.shareLabel.name = "share"
-		self.shareLabel.position = CGPoint(x: 160, y: 80)
+		self.shareLabel.position = CGPoint(x: size.width / 2, y: 80)
 		self.shareLabel.fontSize = 30
 		self.shareLabel.fontName = "MarkerFelt-Wide"
 		self.shareLabel.fontColor = UIColor.cyan
